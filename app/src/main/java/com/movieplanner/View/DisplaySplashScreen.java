@@ -10,7 +10,7 @@ import com.movieplanner.R;
 public class DisplaySplashScreen extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // TODO Auto-generated method stub
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_screen);
 
@@ -31,7 +31,6 @@ public class DisplaySplashScreen extends Activity {
 
     @Override
     protected void onPause() {
-        // TODO Auto-generated method stub
         super.onPause();
         finish();
     }
