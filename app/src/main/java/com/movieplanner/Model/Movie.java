@@ -8,12 +8,12 @@ public class Movie implements IMovie {
 
     private String title;
 
-    private int Year;
+    private String Year;
 
     private String poster;
 
 
-    public Movie(String id, String title, int year, String poster) {
+    public Movie(String id, String title, String year, String poster) {
         Id = id;
         this.title = title;
         Year = year;
@@ -29,7 +29,7 @@ public class Movie implements IMovie {
         return title;
     }
 
-    public int getYear() {
+    public String getYear() {
         return Year;
     }
 

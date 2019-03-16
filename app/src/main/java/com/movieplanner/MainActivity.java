@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        list = new ArrayList<>();
+         list = new ArrayList<>();
 
         loadRecyclerViewItem();
     }
@@ -44,11 +45,18 @@ public class MainActivity extends AppCompatActivity {
     private void loadRecyclerViewItem() {
         //you can fetch the data from server or some apis
         //for this tutorial I am adding some dummy data directly
-        for (int i = 1; i <= 5; i++) {
-            MovieEvent myList = new MovieEvent(
-                    "123 " + i, "Harry potter night",
-                    "rmit university"
+        FileHandler oo = new FileHandler();
+        MovieEvent myList;
+        List moviesData = oo.parseMoviesFile(context);
+        for (int i = 0; i <  moviesData.size(); i++) {
+             myList = new MovieEvent(
+                     oo.parseMoviesFile(context).get(i).getId(), oo.parseMoviesFile(context).get(i).getTitle(),
+                    oo.parseMoviesFile(context).get(i).getPoster()
             );
+
+
+           Log.d("Hello","dddddd"+oo.parseMoviesFile(context).get(0).getTitle());
+
             list.add(myList);
         }
 

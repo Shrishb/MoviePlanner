@@ -5,6 +5,7 @@ import android.content.res.Resources;
 
 import com.movieplanner.Model.Movie;
 import com.movieplanner.R;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -25,10 +26,11 @@ public class FileHandler {
                 String line = scanner.nextLine();
                 String[] splitText = line.split(",");
 
-                String id = splitText[0];
-                String title = splitText[1];
-                int year = Integer.parseInt(splitText[2]);
-                String poster = splitText[3];
+                    // Removing double quotes
+                String id = splitText[0].replaceAll("^\"|\"$", "");
+                String title = splitText[1].replaceAll("^\"|\"$", "");
+                String year = splitText[2].replaceAll("^\"|\"$", "");
+                String poster = splitText[3].replaceAll("^\"|\"$", "");
 
                 movies.add(new Movie(id, title, year, poster));
             }
@@ -37,4 +39,26 @@ public class FileHandler {
         return movies;
     }
 
+//    public List<Movie> getData(){
+//        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+//        List<Movie> movies = new ArrayList<>();
+//        try {
+//            Log.d("Pathd", String.valueOf(getClass().getClassLoader().getResources("raw")));
+//            BufferedReader br = new BufferedReader(new FileReader());
+//            String line = null;
+//                while ( br.readLine() != null) {
+//                    String[] tmpData = line.split(",");
+//                    Log.d("hggh",tmpData[0]);
+//                    movies.add(new Movie(tmpData[0], tmpData[1],Integer.parseInt(tmpData[2]), tmpData[3]));
+//                }
+//            }
+//        catch (FileNotFoundException e) {
+//           Log.d("err","FileNotFound");
+//        }
+//        catch (IOException e) {
+//            Log.d("err","other error");
+//        }
+//
+//        return movies;
+//    }
 }
