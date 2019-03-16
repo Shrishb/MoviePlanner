@@ -2,7 +2,7 @@ package com.movieplanner.Model;
 
 import com.movieplanner.Model.Interface.IMovie;
 
-public abstract class Movie implements IMovie {
+public class Movie implements IMovie {
 
     private String Id;
 

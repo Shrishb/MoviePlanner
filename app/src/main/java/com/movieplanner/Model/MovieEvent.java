@@ -6,7 +6,7 @@ import com.movieplanner.Model.Interface.IMovie;
 import java.util.Date;
 import java.util.List;
 
-public abstract class MovieEvent implements IEvent {
+public class MovieEvent implements IEvent {
 
     private String eventId;
 
@@ -31,6 +31,12 @@ public abstract class MovieEvent implements IEvent {
         this.venue = venue;
         this.location = location;
         this.Contacts = contacts;
+    }
+
+    public MovieEvent(String eventId, String eventTitle, String location){
+        this.eventId =eventId;
+        this.eventTitle = eventTitle;
+        this.location = location;
     }
 
 
