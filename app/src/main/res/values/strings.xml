@@ -9,4 +9,9 @@
     <string name="event_location">Location</string>
     <string name="Attendees">Attendees</string>
     <string name="add_new_event_button">Submit</string>
+    <string name="delete_event">Delete Event</string>
+    <string name="edit_event">Edit Event Details</string>
+    <string name="delete_movie">Delete Movie</string>
+    <string name="edit_movie">Edit movie details</string>
+    <string name="ScheduleEvent">Schedule Event</string>
 </resources>

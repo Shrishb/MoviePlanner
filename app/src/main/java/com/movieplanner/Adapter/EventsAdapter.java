@@ -1,4 +1,4 @@
-package com.movieplanner;
+package com.movieplanner.Adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -10,6 +10,7 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.movieplanner.Model.MovieEvent;
+import com.movieplanner.R;
 
 import java.util.List;
 
@@ -20,6 +21,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventsView
     public class EventsViewHolder extends RecyclerView.ViewHolder {
     public TextView id, title, location, menuOption;
 
+    //constructor
     //todo : need to add other properties as well
     public EventsViewHolder(View view) {
         super(view);
@@ -35,6 +37,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventsView
         this.context = context;
     }
 
+    // populate events list view and bind to parent
     @Override
     public EventsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
@@ -58,13 +61,15 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventsView
                 PopupMenu popup = new PopupMenu(context, holder.menuOption);
 
                 //inflating menu from xml resource
-                popup.inflate(R.menu.options);
+                popup.inflate(R.menu.events_cardview_options);
                 //adding click listener
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
-                            case R.id.menu1:
+
+                            // for delete option remove object from arraylist and update recyclerview
+                            case R.id.eventsDeleteOption:
                                 eventsList.remove(holder.getAdapterPosition());
                                 notifyItemRemoved(holder.getAdapterPosition());
                                 notifyItemRangeChanged(holder.getAdapterPosition(), eventsList.size());

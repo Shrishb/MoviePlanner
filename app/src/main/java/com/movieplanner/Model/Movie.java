@@ -4,7 +4,7 @@ import com.movieplanner.Model.Interface.IMovie;
 
 public class Movie implements IMovie {
 
-    private String Id;
+    private String movieId;
 
     private String title;
 
@@ -13,16 +13,22 @@ public class Movie implements IMovie {
     private String poster;
 
 
-    public Movie(String id, String title, String year, String poster) {
-        Id = id;
+    public Movie( String iD, String title, String year, String poster) {
+        this.movieId = iD;
         this.title = title;
         Year = year;
         this.poster = poster;
     }
 
+    public Movie( String title, String year, String poster) {
+        this.title = title;
+        this.Year = year;
+        this.poster = poster;
+        this.movieId = title.substring(0,3) + year;
+    }
 
     public String getId() {
-        return Id;
+        return movieId;
     }
 
     public String getTitle() {
@@ -36,6 +42,5 @@ public class Movie implements IMovie {
     public String getPoster() {
         return poster;
     }
-
 
 }

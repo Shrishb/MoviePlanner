@@ -33,9 +33,10 @@ public class MovieEvent implements IEvent {
         this.Contacts = contacts;
     }
 
-    public MovieEvent(String eventId, String eventTitle, String location){
+    public MovieEvent(String eventId, String eventTitle, String venue ,String location){
         this.eventId =eventId;
         this.eventTitle = eventTitle;
+        this.venue = venue;
         this.location = location;
     }
 
