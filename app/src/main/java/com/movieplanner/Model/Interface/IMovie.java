@@ -6,7 +6,7 @@ public interface IMovie {
 
     String getTitle() ;
 
-    int getYear();
+    String getYear();
 
     String getPoster();
 }

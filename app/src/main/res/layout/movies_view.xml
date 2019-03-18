@@ -7,24 +7,11 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.movieplanner.MainActivity">
+    tools:context="com.movieplanner.View.ViewMovies">
 
-    <Button
-        android:id="@+id/addEvents"
-        android:layout_width="160dp"
-        android:layout_height="89dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="78dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="157dp"
-        android:onClick="onNewEventClick"
-        android:text="@string/ScheduleEvent" />
 
     <android.support.v7.widget.RecyclerView
-        android:layout_below="@id/addEvents"
-        android:id="@+id/recyclerView"
+        android:id="@+id/moviesRecyclerView"
         android:layout_width="395dp"
         android:layout_height="691dp"
         android:layout_alignParentBottom="true"

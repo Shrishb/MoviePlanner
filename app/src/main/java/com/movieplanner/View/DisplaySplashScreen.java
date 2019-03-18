@@ -14,6 +14,7 @@ public class DisplaySplashScreen extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_screen);
 
+        //use thread to display image for specified time
         Thread timerThread = new Thread(){
             public void run(){
                 try{
@@ -21,6 +22,7 @@ public class DisplaySplashScreen extends Activity {
                 }catch(InterruptedException e){
                     e.printStackTrace();
                 }finally{
+                    //decalre next activity to be used
                     Intent intent = new Intent(DisplaySplashScreen.this, MainActivity.class);
                     startActivity(intent);
                 }
@@ -29,6 +31,7 @@ public class DisplaySplashScreen extends Activity {
         timerThread.start();
     }
 
+    // override the onPause method to move to next activity
     @Override
     protected void onPause() {
         super.onPause();

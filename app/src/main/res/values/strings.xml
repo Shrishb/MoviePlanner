@@ -1,4 +1,17 @@
 <resources>
     <string name="app_name">MoviePlanner</string>
     <string name="vertical_ellipsis">&#8942;</string>
+    <string name="CreateNewEvent">Create New Event</string>
+    <string name="event_title">Event Title</string>
+    <string name="event_start_date">Start Date</string>
+    <string name="event_end_date">End Date</string>
+    <string name="event_venue">Event Venue</string>
+    <string name="event_location">Location</string>
+    <string name="Attendees">Attendees</string>
+    <string name="add_new_event_button">Submit</string>
+    <string name="delete_event">Delete Event</string>
+    <string name="edit_event">Edit Event Details</string>
+    <string name="delete_movie">Delete Movie</string>
+    <string name="edit_movie">Edit movie details</string>
+    <string name="ScheduleEvent">Schedule Event</string>
 </resources>

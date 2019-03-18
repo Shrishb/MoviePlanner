@@ -7,11 +7,12 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.EditText;
 
+import com.movieplanner.Adapter.EventsAdapter;
 import com.movieplanner.Handler.FileHandler;
 import com.movieplanner.Model.MovieEvent;
 import com.movieplanner.View.NewEvent;
+import com.movieplanner.View.ViewMovies;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,20 +36,23 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        list = new ArrayList<>();
+         list = new ArrayList<>();
 
         loadRecyclerViewItem();
     }
 
-    //todo: replace the inner code with the filehandler code
     private void loadRecyclerViewItem() {
-        //you can fetch the data from server or some apis
-        //for this tutorial I am adding some dummy data directly
-        for (int i = 1; i <= 5; i++) {
-            MovieEvent myList = new MovieEvent(
-                    "123 " + i, "Harry potter night",
-                    "rmit university"
+      // call filehandler class method to generate events details in card layout
+        FileHandler fileHandler = new FileHandler();
+        MovieEvent myList;
+        List eventsData = fileHandler.parseEventsFile(context);
+
+        for (int i = 0; i <  eventsData.size(); i++) {
+             myList = new MovieEvent(
+                     fileHandler.parseEventsFile(context).get(i).getEventId(), fileHandler.parseEventsFile(context).get(i).getEventTitle(),
+                     fileHandler.parseEventsFile(context).get(i).getLocation(), fileHandler.parseEventsFile(context).get(i).getVenue()
             );
+
             list.add(myList);
         }
 
@@ -56,12 +60,21 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
-    //call new intext to load new_event view
+    //call new intent to load new_event view
     public void onNewEventClick(View args){
 
         Intent newEventIntent = new Intent(MainActivity.this,
                 NewEvent.class);
 
         startActivity(newEventIntent);
+    }
+
+    //call new intent to load movies_list view
+    public void onViewMoviesClick(View args){
+
+        Intent viewMoviesIntent = new Intent(MainActivity.this,
+                ViewMovies.class);
+
+        startActivity(viewMoviesIntent);
     }
 }
