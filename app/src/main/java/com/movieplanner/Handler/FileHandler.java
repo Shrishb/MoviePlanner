@@ -2,6 +2,7 @@ package com.movieplanner.Handler;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.util.Log;
 
 import com.movieplanner.Model.Movie;
 import com.movieplanner.Model.MovieEvent;
@@ -12,6 +13,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public class FileHandler {
+
+    public MovieEvent newEvent;
+
+
 
     public List<Movie> parseMoviesFile(Context context) {
         // resource reference to events.txt in res/raw/ folder of your project
@@ -45,7 +50,9 @@ public class FileHandler {
         List<MovieEvent> eventsList = new ArrayList<>();
         try (Scanner scanner = new Scanner(context.getResources().openRawResource(R.raw.events))) {
             // match comma and 0 or more whitespace OR trailing space and newline
-
+            if(newEvent != null){
+                eventsList.add(newEvent);
+            }
             scanner.useDelimiter(",\\s*|\\s*\\n+");
             //loop through the lines and get all instance values
             while (scanner.hasNext()) {
@@ -61,10 +68,14 @@ public class FileHandler {
                 String location = splitText[3].replaceAll("^\"|\"$", "");
 
                 eventsList.add(new MovieEvent(id, title, venue, location));
+
             }
+            Log.i("value","ooo - "+eventsList.size());
         } catch (Resources.NotFoundException e) {
         }
+
         return eventsList;
+
     }
 
 }
