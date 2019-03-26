@@ -3,12 +3,19 @@ package com.movieplanner.View;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.movieplanner.Handler.ContactsDataHandler;
+import com.movieplanner.Listener.ContactsDataListener;
+import com.movieplanner.Model.Attendees;
 import com.movieplanner.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class EditEvent extends AppCompatActivity {
 
@@ -19,6 +26,8 @@ public class EditEvent extends AppCompatActivity {
     private  EditText editLocation;
     private  EditText editVenue;
     private Button editEventSubmit;
+    private EditText attendeesField;
+    private List<Attendees> attendees;
 
     // bind layout menu on top to display edit icons
     @Override
@@ -33,6 +42,7 @@ public class EditEvent extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_event);
+        attendees = new ArrayList<>();
 
         setAllFields();
     }
@@ -77,6 +87,45 @@ public class EditEvent extends AppCompatActivity {
 
         editEventSubmit = findViewById(R.id.editEventSubmit);
         editEventSubmit.setEnabled(false);
+
+        attendeesField = (EditText) findViewById(R.id.editEventAttendees);
+        attendeesField.setOnClickListener(new ContactsDataListener(this));
+
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+            if (resultCode == RESULT_OK)
+            {
+                ContactsDataHandler contactsHandler = new ContactsDataHandler(
+                        this, data);
+                String name = "";
+                String email = "";
+                try
+                {
+                    name = contactsHandler.getContactName();
+                    email = contactsHandler.getContactEmail();
+                }
+                catch (ContactsDataHandler.ContactQueryException e)
+                {
+                }
+                attendees.add(new Attendees(name, email));
+                updateAttendeesField();
+            }
+    }
+
+
+    // update the list with the contact names derived from contact manager
+    private void updateAttendeesField()
+    {
+        List<String> attendeesNames = new ArrayList<>();
+        for (Attendees a : attendees)
+        {
+            attendeesNames.add(a.toString());
+        }
+        attendeesField.setText(TextUtils.join(", ", attendeesNames));
     }
 
     //enable all layout items when edit icon is clicked
