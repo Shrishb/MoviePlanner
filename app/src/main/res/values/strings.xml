@@ -14,4 +14,5 @@
     <string name="delete_movie">Delete Movie</string>
     <string name="edit_movie">Edit movie details</string>
     <string name="ScheduleEvent">Schedule Event</string>
+    <string name="event_attendees_label">Attendees</string>
 </resources>
