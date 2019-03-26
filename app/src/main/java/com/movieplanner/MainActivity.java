@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 import com.movieplanner.Adapter.EventsAdapter;
@@ -19,7 +20,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private Context context;
-    private List<MovieEvent> list;
+    private  List<MovieEvent> list;
 
     //recyclerview objects
     private RecyclerView recyclerView;
@@ -47,10 +48,16 @@ public class MainActivity extends AppCompatActivity {
         MovieEvent myList;
         List eventsData = fileHandler.parseEventsFile(context);
 
+        Log.i("size", "size="+eventsData.size());
+
         for (int i = 0; i <  eventsData.size(); i++) {
              myList = new MovieEvent(
-                     fileHandler.parseEventsFile(context).get(i).getEventId(), fileHandler.parseEventsFile(context).get(i).getEventTitle(),
-                     fileHandler.parseEventsFile(context).get(i).getLocation(), fileHandler.parseEventsFile(context).get(i).getVenue()
+                     fileHandler.parseEventsFile(context).get(i).getEventId(),
+                     fileHandler.parseEventsFile(context).get(i).getEventTitle(),
+                     fileHandler.parseEventsFile(context).get(i).getVenue(),
+                     fileHandler.parseEventsFile(context).get(i).getStartDate(),
+                     fileHandler.parseEventsFile(context).get(i).getEndDate(),
+                     fileHandler.parseEventsFile(context).get(i).getLocation()
             );
 
             list.add(myList);
