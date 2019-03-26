@@ -11,25 +11,25 @@
 
     <Button
         android:id="@+id/addEvents"
-        android:layout_width="160dp"
-        android:layout_height="89dp"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="78dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="157dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="199dp"
         android:onClick="onNewEventClick"
         android:text="@string/ScheduleEvent" />
 
     <Button
         android:id="@+id/viewMovies"
-        android:layout_width="121dp"
-        android:layout_height="66dp"
+        android:layout_width="120dp"
+        android:layout_height="62dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="254dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginStart="268dp"
+        android:layout_marginEnd="7dp"
         android:onClick="onViewMoviesClick"
         android:text="View Movies" />
 

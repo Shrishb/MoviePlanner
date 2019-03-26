@@ -10,10 +10,20 @@
     tools:context="com.movieplanner.View.ViewMovies">
 
 
+    <Button
+        android:id="@+id/addNewMovie"
+        android:layout_width="258dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/moviesRecyclerView"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:onClick="onNewMovieClick"
+        android:text="Add New Movie" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/moviesRecyclerView"
-        android:layout_width="395dp"
-        android:layout_height="691dp"
+        android:layout_width="363dp"
+        android:layout_height="619dp"
         android:layout_alignParentBottom="true"
         android:scrollbars="vertical" />
 </RelativeLayout>
