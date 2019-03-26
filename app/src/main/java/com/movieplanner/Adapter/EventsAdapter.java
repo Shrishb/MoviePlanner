@@ -1,6 +1,7 @@
 package com.movieplanner.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import com.movieplanner.Model.MovieEvent;
 import com.movieplanner.R;
+import com.movieplanner.View.EditEvent;
 
 import java.util.List;
 
@@ -46,7 +48,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventsView
         return new EventsViewHolder(itemView);
     }
 
-
+    //bind  events_cardview_options to show the menu options in each cardview
     @Override
     public void onBindViewHolder(final EventsAdapter.EventsViewHolder holder, int position) {
         MovieEvent movieEvent = eventsList.get(position);
@@ -74,6 +76,10 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventsView
                                 notifyItemRemoved(holder.getAdapterPosition());
                                 notifyItemRangeChanged(holder.getAdapterPosition(), eventsList.size());
                                 break;
+
+                            case R.id.eventsEditOption:
+                                onEditEventDetails(holder);
+                                break;
                         }
                         return false;
                     }
@@ -87,6 +93,21 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventsView
     @Override
     public int getItemCount() {
         return eventsList.size();
+    }
+
+    // open new editevent view to pass event details for editing
+    private void onEditEventDetails(final EventsAdapter.EventsViewHolder holder){
+        Intent MainIntent;
+        MainIntent = new Intent(context,
+                EditEvent.class);
+
+        MainIntent.putExtra("eTitle", eventsList.get(holder.getAdapterPosition()).getEventTitle());
+        MainIntent.putExtra("eStartDate", eventsList.get(holder.getAdapterPosition()).getStartDate());
+        MainIntent.putExtra("eEndDate", eventsList.get(holder.getAdapterPosition()).getEndDate());
+        MainIntent.putExtra("eLocation", eventsList.get(holder.getAdapterPosition()).getLocation());
+        MainIntent.putExtra("eVenue", eventsList.get(holder.getAdapterPosition()).getVenue());
+
+        context.startActivity(MainIntent);
     }
 }
 

@@ -24,10 +24,6 @@ public class NewEvent extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_event);
-        // EditText newEventLabel = findViewById(R.id.newEventLabel);
-        //newEventLabel.setEnabled(false);
-
-
     }
 
     //call main intent on save button click
@@ -62,12 +58,16 @@ public class NewEvent extends AppCompatActivity {
 
         // Making New Event object
 
-        MovieEvent newEvent = new MovieEvent("3",eventTitle.getText().toString(),  eventVenue.getText().toString(), eventLocation.getText().toString() );
+        MovieEvent newEvent = new MovieEvent("3",eventTitle.getText().toString(),
+                eventVenue.getText().toString(),
+                eventStartDate.getText().toString(),
+                eventEndDate.getText().toString(),
+                eventLocation.getText().toString() );
 
         // passing values to FileHandlers
 
         FileHandler newEventvals = new FileHandler();
-         newEventvals.newEvent = newEvent;
+        newEventvals.newEvent = newEvent;
 
          newEventvals.parseEventsFile(this);
 

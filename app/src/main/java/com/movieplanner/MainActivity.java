@@ -52,8 +52,12 @@ public class MainActivity extends AppCompatActivity {
 
         for (int i = 0; i <  eventsData.size(); i++) {
              myList = new MovieEvent(
-                     fileHandler.parseEventsFile(context).get(i).getEventId(), fileHandler.parseEventsFile(context).get(i).getEventTitle(),
-                     fileHandler.parseEventsFile(context).get(i).getLocation(), fileHandler.parseEventsFile(context).get(i).getVenue()
+                     fileHandler.parseEventsFile(context).get(i).getEventId(),
+                     fileHandler.parseEventsFile(context).get(i).getEventTitle(),
+                     fileHandler.parseEventsFile(context).get(i).getVenue(),
+                     fileHandler.parseEventsFile(context).get(i).getStartDate(),
+                     fileHandler.parseEventsFile(context).get(i).getEndDate(),
+                     fileHandler.parseEventsFile(context).get(i).getLocation()
             );
 
             list.add(myList);

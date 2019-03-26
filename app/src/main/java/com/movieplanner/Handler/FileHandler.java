@@ -64,11 +64,10 @@ public class FileHandler {
                 String title = splitText[1].replaceAll("^\"|\"$", "");
                 String startDate = splitText[2].replaceAll("^\"|\"$", "");
                 String endDate = splitText[3].replaceAll("^\"|\"$", "");
-                String venue = splitText[3].replaceAll("^\"|\"$", "");
-                String location = splitText[3].replaceAll("^\"|\"$", "");
+                String venue = splitText[4].replaceAll("^\"|\"$", "");
+                String location = splitText[5].replaceAll("^\"|\"$", "");
 
-                eventsList.add(new MovieEvent(id, title, venue, location));
-
+                eventsList.add(new MovieEvent(id, title, venue, startDate, endDate, location));
             }
             Log.i("value","ooo - "+eventsList.size());
         } catch (Resources.NotFoundException e) {

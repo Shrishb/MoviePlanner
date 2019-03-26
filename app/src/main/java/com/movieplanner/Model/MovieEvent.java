@@ -1,9 +1,7 @@
 package com.movieplanner.Model;
 
 import com.movieplanner.Model.Interface.IEvent;
-import com.movieplanner.Model.Interface.IMovie;
 
-import java.util.Date;
 import java.util.List;
 
 public class MovieEvent implements IEvent {
@@ -12,9 +10,9 @@ public class MovieEvent implements IEvent {
 
     private String eventTitle;
 
-    private Date startDate;
+    private String startDate;
 
-    private Date endDate;
+    private String endDate;
 
     private String venue;
 
@@ -22,8 +20,8 @@ public class MovieEvent implements IEvent {
 
     private List<String> Contacts;
 
-    public MovieEvent(String eventId, String eventTitle, Date startDate,
-                      Date endDate, String venue, String location, List<String> contacts){
+    public MovieEvent(String eventId, String eventTitle, String startDate,
+                      String endDate, String venue, String location, List<String> contacts){
         this.eventId =eventId;
         this.eventTitle = eventTitle;
         this.startDate = startDate;
@@ -33,10 +31,13 @@ public class MovieEvent implements IEvent {
         this.Contacts = contacts;
     }
 
-    public MovieEvent(String eventId, String eventTitle, String venue ,String location){
+    public MovieEvent(String eventId, String eventTitle,String startDate,
+                      String endDate, String venue ,String location){
         this.eventId =eventId;
         this.eventTitle = eventTitle;
         this.venue = venue;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.location = location;
     }
 
@@ -49,11 +50,11 @@ public class MovieEvent implements IEvent {
         return eventTitle;
     }
 
-    public Date getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public Date getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
