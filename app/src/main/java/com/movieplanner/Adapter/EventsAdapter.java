@@ -21,14 +21,15 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventsView
     private Context context;
 
     public class EventsViewHolder extends RecyclerView.ViewHolder {
-    public TextView id, title, location, menuOption;
+    public TextView id, title, location,startDate, endDate, menuOption;
 
     //constructor
     //todo : need to add other properties as well
     public EventsViewHolder(View view) {
         super(view);
-        id = (TextView) view.findViewById(R.id.id);
         title = (TextView) view.findViewById(R.id.title);
+        startDate = (TextView) view.findViewById(R.id.startDate);
+        endDate = (TextView) view.findViewById(R.id.endDate);
         location = (TextView) view.findViewById(R.id.location);
         menuOption = (TextView) view.findViewById(R.id.menuOptions);
         }
@@ -52,11 +53,12 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventsView
     @Override
     public void onBindViewHolder(final EventsAdapter.EventsViewHolder holder, int position) {
         MovieEvent movieEvent = eventsList.get(position);
-        holder.id.setText(movieEvent.getEventId());
         holder.title.setText(movieEvent.getEventTitle());
         holder.location.setText(movieEvent.getLocation());
+        holder.startDate.setText(movieEvent.getStartDate());
+        holder.endDate.setText(movieEvent.getEndDate());
 
-        holder.id.setOnClickListener(new View.OnClickListener() {
+        holder.title.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //will show popup menu here

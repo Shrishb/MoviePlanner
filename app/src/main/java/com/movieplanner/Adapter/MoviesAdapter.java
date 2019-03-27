@@ -58,6 +58,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesView
         Movie movie = moviesList.get(position);
         holder.title.setText(movie.getTitle());
         holder.year.setText(movie.getYear());
+        holder.poster.setImageResource(R.drawable.poster);
 
         // click handler to perform appropriate action based on option menu click
         holder.title.setOnClickListener(new View.OnClickListener() {
