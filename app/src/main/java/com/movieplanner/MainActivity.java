@@ -22,6 +22,10 @@ public class MainActivity extends AppCompatActivity {
     private Context context;
     private  List<MovieEvent> list;
 
+
+    // List to staore all events
+    public static List<MovieEvent> AllEvents = new ArrayList<>();
+
     //recyclerview objects
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
@@ -32,40 +36,66 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         context = this;
 
+        Log.i("Start","Creating");
+
         //initializing views
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+
          list = new ArrayList<>();
 
-        loadRecyclerViewItem();
+            loadRecyclerViewItem();
+
+
     }
 
+
+
     private void loadRecyclerViewItem() {
+
       // call filehandler class method to generate events details in card layout
         FileHandler fileHandler = new FileHandler();
         MovieEvent myList;
-        List eventsData = fileHandler.parseEventsFile(context);
+        // Check if static arraylist has value
+        if(AllEvents.isEmpty()){
 
-        Log.i("size", "size="+eventsData.size());
+           // load from file 1st time
+            List<MovieEvent> eventsData = fileHandler.parseEventsFile(context);
 
-        for (int i = 0; i <  eventsData.size(); i++) {
-             myList = new MovieEvent(
-                     fileHandler.parseEventsFile(context).get(i).getEventId(),
-                     fileHandler.parseEventsFile(context).get(i).getEventTitle(),
-                     fileHandler.parseEventsFile(context).get(i).getVenue(),
-                     fileHandler.parseEventsFile(context).get(i).getStartDate(),
-                     fileHandler.parseEventsFile(context).get(i).getEndDate(),
-                     fileHandler.parseEventsFile(context).get(i).getLocation()
-            );
 
-            list.add(myList);
+            for (int i = 0; i <  eventsData.size(); i++) {
+                myList = new MovieEvent(
+                        eventsData.get(i).getEventId(),
+                        eventsData.get(i).getEventTitle(),
+                        eventsData.get(i).getVenue(),
+                        eventsData.get(i).getStartDate(),
+                        eventsData.get(i).getEndDate(),
+                        eventsData.get(i).getLocation()
+                );
+
+
+
+                list.add(myList);
+            }
+
+            adapter = new EventsAdapter(list, this);
+            recyclerView.setAdapter(adapter);
+            //Log.i("listsss",AllEvents.toString());
         }
 
-        adapter = new EventsAdapter(list, this);
-        recyclerView.setAdapter(adapter);
+        else{
+            // Load static lists
+            Log.i("size",Integer.toString(AllEvents.size()));
+            Log.i("lists",AllEvents.toString());
+            adapter = new EventsAdapter(AllEvents, this);
+            recyclerView.setAdapter(adapter);
+        }
+
     }
+
+
 
     //call new intent to load new_event view
     public void onNewEventClick(View args){
