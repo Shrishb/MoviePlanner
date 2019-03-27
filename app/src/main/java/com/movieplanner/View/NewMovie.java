@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.movieplanner.R;
 
-class NewMovie extends AppCompatActivity {
+public class NewMovie extends AppCompatActivity {
 
     //create new movie view
     @Override
