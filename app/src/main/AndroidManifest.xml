@@ -36,6 +36,9 @@
         <activity android:name="com.movieplanner.View.EditEvent" android:parentActivityName=".MainActivity">
 
         </activity>
+        <activity android:name="com.movieplanner.View.NewMovie" android:parentActivityName=".MainActivity">
+
+        </activity>
     </application>
 
 </manifest>
