@@ -47,7 +47,7 @@ public class ViewMovies extends AppCompatActivity {
         FileHandler fileHandler = new FileHandler();
         Movie myList;
 
-        List moviesData = fileHandler.parseMoviesFile(context);
+        List<Movie> moviesData = fileHandler.parseMoviesFile(context);
         for (int i = 0; i <  moviesData.size(); i++) {
             myList = new Movie(
                     fileHandler.parseMoviesFile(context).get(i).getTitle(),
