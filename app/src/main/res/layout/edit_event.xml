@@ -7,19 +7,19 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/eventHeading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
         android:layout_weight="1"
-        android:text="@string/CreateNewEvent"
+        android:text="@string/edit_event"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColorLink="@color/colorPrimary" />
 
     <EditText
-        android:id="@+id/eventTitle"
+        android:id="@+id/editEventTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
@@ -29,7 +29,7 @@
         android:text="@string/event_title" />
 
     <EditText
-        android:id="@+id/eventStartDate"
+        android:id="@+id/editEventStartDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
@@ -39,7 +39,7 @@
         android:text="@string/event_start_date" />
 
     <EditText
-        android:id="@+id/eventEndDate"
+        android:id="@+id/editEventEndDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
@@ -50,7 +50,7 @@
         android:text="@string/event_end_date" />
 
     <EditText
-        android:id="@+id/eventVenue"
+        android:id="@+id/editEventVenue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
@@ -61,13 +61,13 @@
         android:text="@string/event_venue" />
 
     <EditText
-        android:id="@+id/eventLocation"
+        android:id="@+id/editEventLocation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/event_location" />
+        android:singleLine="true"
+        android:inputType="textPersonName" />
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
@@ -76,16 +76,17 @@
         android:hint="@string/event_attendees_label">
 
         <android.support.design.widget.TextInputEditText
-            android:id="@+id/addEventAttendees"
+            android:id="@+id/editEventAttendees"
             android:layout_width="match_parent"
             android:layout_marginTop="40dp"
             android:layout_height="match_parent"
             android:focusable="false"
             android:inputType="text" />
+
     </android.support.design.widget.TextInputLayout>
 
     <Button
-        android:id="@+id/NewEventSubmit"
+        android:id="@+id/editEventSubmit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -95,4 +96,5 @@
         android:onClick="SaveNewEvent"
         android:text="@string/add_new_event_button"
         android:textAppearance="@style/TextAppearance.AppCompat.Button" />
+
 </LinearLayout>

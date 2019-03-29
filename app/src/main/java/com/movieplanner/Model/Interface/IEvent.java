@@ -1,6 +1,5 @@
 package com.movieplanner.Model.Interface;
 
-import java.util.Date;
 import java.util.List;
 
 public interface IEvent {
@@ -8,9 +7,9 @@ public interface IEvent {
 
      String getEventTitle();
 
-     Date getStartDate();
+     String getStartDate();
 
-     Date getEndDate();
+     String getEndDate();
 
      String getVenue() ;
 

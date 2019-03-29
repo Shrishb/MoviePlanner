@@ -21,6 +21,17 @@
         android:layout_marginEnd="157dp"
         android:text="@string/ScheduleEvent" />
 
+    <Button
+        android:id="@+id/viewMovies"
+        android:layout_width="121dp"
+        android:layout_height="66dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="254dp"
+        android:layout_marginEnd="20dp"
+        android:onClick="onViewMoviesClick"
+        android:text="View Movies" />
+
     <android.support.v7.widget.RecyclerView
         android:layout_below="@id/addEvents"
         android:id="@+id/recyclerView"
