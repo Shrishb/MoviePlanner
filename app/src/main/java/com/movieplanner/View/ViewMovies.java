@@ -1,13 +1,16 @@
 package com.movieplanner.View;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.movieplanner.Adapter.MoviesAdapter;
 import com.movieplanner.Handler.FileHandler;
+import com.movieplanner.MainActivity;
 import com.movieplanner.Model.Movie;
 import com.movieplanner.R;
 
@@ -57,5 +60,14 @@ public class ViewMovies extends AppCompatActivity {
 
         adapter = new MoviesAdapter(list, this);
         moviesRecyclerView.setAdapter(adapter);
+    }
+
+    //call new intent to load new_movie view
+    public void onNewMovieClick(View args){
+
+        Intent newMovieIntent = new Intent(ViewMovies.this,
+                NewMovie.class);
+
+        startActivity(newMovieIntent);
     }
 }
