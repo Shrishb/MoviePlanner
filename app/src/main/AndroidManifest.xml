@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.movieplanner.MainActivity">
+        <activity android:name="com.movieplanner.NewMainActivity">
             <intent-filter>
                 <action android:name="com." />
 
@@ -28,6 +28,10 @@
         <activity android:name="com.movieplanner.View.NewEvent" android:parentActivityName=".MainActivity">
 
         </activity>
+        <activity android:name="com.movieplanner.MainActivity" android:parentActivityName=".NewMainActivity">
+
+        </activity>
+
         <activity android:name="com.movieplanner.View.ViewMovies" android:parentActivityName=".MainActivity">
 
         </activity>

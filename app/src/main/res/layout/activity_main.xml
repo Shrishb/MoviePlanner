@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.movieplanner.MainActivity">
+    tools:context="com.movieplanner.Fragment1">
 
     <Button
         android:id="@+id/addEvents"
@@ -19,7 +19,6 @@
         android:layout_marginStart="78dp"
         android:layout_marginTop="0dp"
         android:layout_marginEnd="157dp"
-        android:onClick="onNewEventClick"
         android:text="@string/ScheduleEvent" />
 
     <android.support.v7.widget.RecyclerView

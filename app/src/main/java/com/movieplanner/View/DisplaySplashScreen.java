@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.movieplanner.MainActivity;
+import com.movieplanner.NewMainActivity;
 import com.movieplanner.R;
 
 public class DisplaySplashScreen extends Activity {
@@ -23,7 +24,7 @@ public class DisplaySplashScreen extends Activity {
                     e.printStackTrace();
                 }finally{
                     //decalre next activity to be used
-                    Intent intent = new Intent(DisplaySplashScreen.this, MainActivity.class);
+                    Intent intent = new Intent(DisplaySplashScreen.this, NewMainActivity.class);
                     startActivity(intent);
                 }
             }

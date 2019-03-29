@@ -61,13 +61,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //call new intent to load new_event view
-    public void onNewEventClick(View args){
-
-        Intent newEventIntent = new Intent(MainActivity.this,
-                NewEvent.class);
-
-        startActivity(newEventIntent);
-    }
+//    public void onNewEventClick(View args){
+//
+//        Intent newEventIntent = new Intent(MainActivity.this,
+//                NewEvent.class);
+//
+//        startActivity(newEventIntent);
+//    }
 
     //call new intent to load movies_list view
     public void onViewMoviesClick(View args){
