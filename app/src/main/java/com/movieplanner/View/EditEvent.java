@@ -3,6 +3,7 @@ package com.movieplanner.View;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -45,6 +46,10 @@ public class EditEvent extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_event);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         attendees = new ArrayList<>();
 
         setAllFields();
@@ -93,14 +98,10 @@ public class EditEvent extends AppCompatActivity {
         editLocation.setEnabled(false);
 
         editEventSubmit = findViewById(R.id.editEventSubmit);
-        editEventSubmit.setEnabled(false);
-
+        editEventSubmit.setVisibility(View.INVISIBLE);
 
         attendeesField = (EditText) findViewById(R.id.editEventAttendees);
         attendeesField.setOnClickListener(new ContactsDataListener(this));
-
-
-
     }
 
 
@@ -145,7 +146,7 @@ public class EditEvent extends AppCompatActivity {
         editEndDate.setEnabled(true);
         editStartDate.setEnabled(true);
         editLocation.setEnabled(true);
-        editEventSubmit.setEnabled(true);
+        editEventSubmit.setVisibility(View.VISIBLE);
     }
 
     // Method for Edit events
@@ -159,10 +160,10 @@ public class EditEvent extends AppCompatActivity {
         MainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
         // Edit Main arraylist after finding the id
-        for(int i=0;i<(MainActivity.AllEvents.size() -1);i++){
-            if(eventID.equals(MainActivity.AllEvents.get(i).getEventId())){
+        for(int i=0;i<(ListViewFragment.AllEvents.size() -1);i++){
+            if(eventID.equals(ListViewFragment.AllEvents.get(i).getEventId())){
 
-                MainActivity.AllEvents.get(i).setEventTitle(editTitle.getText().toString());
+                ListViewFragment.AllEvents.get(i).setEventTitle(editTitle.getText().toString());
                 // break the loop after changing
                 break;
             }

@@ -36,7 +36,7 @@ public class ListViewFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         setHasOptionsMenu(true);
-        View v = inflater.inflate(R.layout.activity_main, container, false);
+        View v = inflater.inflate(R.layout.listview_fragment, container, false);
 
         return v;
     }

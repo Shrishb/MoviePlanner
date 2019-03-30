@@ -1,42 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.movieplanner.View.ListViewFragment">
+    android:orientation="vertical">
 
-    <Button
-        android:id="@+id/addEvents"
-        android:layout_width="160dp"
-        android:layout_height="89dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="78dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="157dp"
-        android:text="@string/ScheduleEvent" />
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark" />
 
-    <Button
-        android:id="@+id/viewMovies"
-        android:layout_width="121dp"
-        android:layout_height="66dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="254dp"
-        android:layout_marginEnd="20dp"
-        android:onClick="onViewMoviesClick"
-        android:text="View Movies" />
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorGreen"
+        app:tabSelectedTextColor="@android:color/white"
+        app:tabTextColor="@android:color/holo_green_light">
 
-    <android.support.v7.widget.RecyclerView
-        android:layout_below="@id/addEvents"
-        android:id="@+id/recyclerView"
-        android:layout_width="395dp"
-        android:layout_height="691dp"
-        android:layout_alignParentBottom="true"
-        android:scrollbars="vertical" />
-</RelativeLayout>
+        <android.support.design.widget.TabItem
+            android:id="@+id/tabListView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="List View" />
+
+        <android.support.design.widget.TabItem
+            android:id="@+id/tabCalendar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Calendar View" />
+
+    </android.support.design.widget.TabLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>
