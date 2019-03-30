@@ -18,4 +18,5 @@
     <string name="edit_movie">Edit movie details</string>
     <string name="ScheduleEvent">Schedule Event</string>
     <string name="event_attendees_label">Attendees</string>
+    <string name="add_new_movie">Add New Movie</string>
 </resources>

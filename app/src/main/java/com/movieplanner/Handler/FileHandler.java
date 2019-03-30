@@ -7,6 +7,7 @@ import android.util.Log;
 import com.movieplanner.Model.Movie;
 import com.movieplanner.Model.MovieEvent;
 import com.movieplanner.R;
+import com.movieplanner.View.ListViewFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,8 +16,6 @@ import java.util.Scanner;
 public class FileHandler {
 
     public MovieEvent newEvent;
-
-
 
     public List<Movie> parseMoviesFile(Context context) {
         // resource reference to events.txt in res/raw/ folder of your project
@@ -68,6 +67,12 @@ public class FileHandler {
                 String location = splitText[5].replaceAll("^\"|\"$", "");
 
                 eventsList.add(new MovieEvent(id, title, venue, startDate, endDate, location));
+
+                // add lists to AllEvents arraylist after object creation
+
+                ListViewFragment listViewFragment = new ListViewFragment();
+                listViewFragment.AllEvents.add(new MovieEvent(id, title, venue, startDate, endDate, location));
+
             }
             Log.i("value","ooo - "+eventsList.size());
         } catch (Resources.NotFoundException e) {

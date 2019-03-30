@@ -1,87 +1,70 @@
 package com.movieplanner;
 
-import android.content.Context;
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.View;
+import android.support.design.widget.TabItem;
+import android.support.design.widget.TabLayout;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 
-import com.movieplanner.Adapter.EventsAdapter;
-import com.movieplanner.Handler.FileHandler;
-import com.movieplanner.Model.MovieEvent;
-import com.movieplanner.View.NewEvent;
-import com.movieplanner.View.ViewMovies;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.movieplanner.Adapter.PageAdapter;
 
 public class MainActivity extends AppCompatActivity {
-    private Context context;
-    private  List<MovieEvent> list;
 
-    //recyclerview objects
-    private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
+    Toolbar toolbar;
+    TabLayout tabLayout;
+    ViewPager viewPager;
+    PageAdapter pageAdapter;
+    TabItem tabListView;
+    TabItem tabCalendar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        context = this;
 
-        //initializing views
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle(getResources().getString(R.string.app_name));
+        setSupportActionBar(toolbar);
 
-         list = new ArrayList<>();
+        tabListView = findViewById(R.id.tabListView);
+        tabCalendar = findViewById(R.id.tabCalendar);
+        viewPager = findViewById(R.id.viewPager);
+        tabLayout = findViewById(R.id.tabLayout);
 
-        loadRecyclerViewItem();
-    }
+        pageAdapter = new PageAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        viewPager.setAdapter(pageAdapter);
 
-    private void loadRecyclerViewItem() {
-      // call filehandler class method to generate events details in card layout
-        FileHandler fileHandler = new FileHandler();
-        MovieEvent myList;
-        List eventsData = fileHandler.parseEventsFile(context);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
-        Log.i("size", "size="+eventsData.size());
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+                if (tab.getPosition() == 1) {
+                    toolbar.setBackgroundColor(ContextCompat.getColor(MainActivity.this,
+                            R.color.colorAccent));
+                    tabLayout.setBackgroundColor(ContextCompat.getColor(MainActivity.this,
+                            R.color.colorAccent));
+                } else if (tab.getPosition() == 2) {
+                    toolbar.setBackgroundColor(ContextCompat.getColor(MainActivity.this,
+                            android.R.color.darker_gray));
+                    tabLayout.setBackgroundColor(ContextCompat.getColor(MainActivity.this,
+                            android.R.color.darker_gray));
+                }
+            }
 
-        for (int i = 0; i <  eventsData.size(); i++) {
-             myList = new MovieEvent(
-                     fileHandler.parseEventsFile(context).get(i).getEventId(),
-                     fileHandler.parseEventsFile(context).get(i).getEventTitle(),
-                     fileHandler.parseEventsFile(context).get(i).getVenue(),
-                     fileHandler.parseEventsFile(context).get(i).getStartDate(),
-                     fileHandler.parseEventsFile(context).get(i).getEndDate(),
-                     fileHandler.parseEventsFile(context).get(i).getLocation()
-            );
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
 
-            list.add(myList);
-        }
+            }
 
-        adapter = new EventsAdapter(list, this);
-        recyclerView.setAdapter(adapter);
-    }
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
 
-    //call new intent to load new_event view
-    public void onNewEventClick(View args){
+            }
+        });
 
-        Intent newEventIntent = new Intent(MainActivity.this,
-                NewEvent.class);
-
-        startActivity(newEventIntent);
-    }
-
-    //call new intent to load movies_list view
-    public void onViewMoviesClick(View args){
-
-        Intent viewMoviesIntent = new Intent(MainActivity.this,
-                ViewMovies.class);
-
-        startActivity(viewMoviesIntent);
     }
 }

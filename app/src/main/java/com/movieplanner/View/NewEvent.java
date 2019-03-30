@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.movieplanner.Handler.ContactsDataHandler;
-import com.movieplanner.Handler.FileHandler;
 import com.movieplanner.Listener.ContactsDataListener;
 import com.movieplanner.MainActivity;
 import com.movieplanner.Model.Attendees;
@@ -35,7 +34,7 @@ public class NewEvent extends AppCompatActivity {
 
     }
 
-    //call main intent on save button click
+    //call activity_main intent on save button click
     public void SaveNewEvent(View view){
 
         Intent MainIntent = new Intent(NewEvent.this,
@@ -67,7 +66,7 @@ public class NewEvent extends AppCompatActivity {
 
         // Making New Event object
 
-        MovieEvent newEvent = new MovieEvent("3",eventTitle.getText().toString(),
+        MovieEvent newEvent = new MovieEvent(Integer.toString(ListViewFragment.AllEvents.size() + 1),eventTitle.getText().toString(),
                 eventVenue.getText().toString(),
                 eventStartDate.getText().toString(),
                 eventEndDate.getText().toString(),
@@ -75,10 +74,8 @@ public class NewEvent extends AppCompatActivity {
 
         // passing values to FileHandlers
 
-        FileHandler newEventvals = new FileHandler();
-        newEventvals.newEvent = newEvent;
-
-         newEventvals.parseEventsFile(this);
+        ListViewFragment listViewFragment = new ListViewFragment();
+        listViewFragment.AllEvents.add(0,newEvent);
 
         startActivity(MainIntent);
     }

@@ -103,6 +103,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventsView
         MainIntent = new Intent(context,
                 EditEvent.class);
 
+        MainIntent.putExtra("eID", eventsList.get(holder.getAdapterPosition()).getEventId());
         MainIntent.putExtra("eTitle", eventsList.get(holder.getAdapterPosition()).getEventTitle());
         MainIntent.putExtra("eStartDate", eventsList.get(holder.getAdapterPosition()).getStartDate());
         MainIntent.putExtra("eEndDate", eventsList.get(holder.getAdapterPosition()).getEndDate());

@@ -3,14 +3,17 @@ package com.movieplanner.View;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.movieplanner.Handler.ContactsDataHandler;
 import com.movieplanner.Listener.ContactsDataListener;
+import com.movieplanner.MainActivity;
 import com.movieplanner.Model.Attendees;
 import com.movieplanner.R;
 
@@ -20,6 +23,7 @@ import java.util.List;
 public class EditEvent extends AppCompatActivity {
 
     //declare layout items
+    private String eventID;
     private  EditText editTitle;
     private  EditText editStartDate;
     private  EditText editEndDate;
@@ -42,6 +46,10 @@ public class EditEvent extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_event);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         attendees = new ArrayList<>();
 
         setAllFields();
@@ -65,6 +73,10 @@ public class EditEvent extends AppCompatActivity {
     private void setAllFields(){
         Intent newIntent = getIntent();
 
+        // Values in data members
+
+        eventID = newIntent.getStringExtra("eID");
+
         editTitle = findViewById(R.id.editEventTitle);
         editTitle.setText(newIntent.getStringExtra("eTitle"));
         editTitle.setEnabled(false);
@@ -86,11 +98,10 @@ public class EditEvent extends AppCompatActivity {
         editLocation.setEnabled(false);
 
         editEventSubmit = findViewById(R.id.editEventSubmit);
-        editEventSubmit.setEnabled(false);
+        editEventSubmit.setVisibility(View.INVISIBLE);
 
         attendeesField = (EditText) findViewById(R.id.editEventAttendees);
         attendeesField.setOnClickListener(new ContactsDataListener(this));
-
     }
 
 
@@ -135,7 +146,29 @@ public class EditEvent extends AppCompatActivity {
         editEndDate.setEnabled(true);
         editStartDate.setEnabled(true);
         editLocation.setEnabled(true);
-        editEventSubmit.setEnabled(true);
+        editEventSubmit.setVisibility(View.VISIBLE);
+    }
+
+    // Method for Edit events
+    public void editEvent(View view){
+
+        // MainActivity Loads
+        Intent MainIntent = new Intent(EditEvent.this,
+                MainActivity.class);
+
+        // killing all previous activities
+        MainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+        // Edit Main arraylist after finding the id
+        for(int i=0;i<(ListViewFragment.AllEvents.size() -1);i++){
+            if(eventID.equals(ListViewFragment.AllEvents.get(i).getEventId())){
+
+                ListViewFragment.AllEvents.get(i).setEventTitle(editTitle.getText().toString());
+                // break the loop after changing
+                break;
+            }
+        }
+        startActivity(MainIntent);
     }
 }
 
