@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.util.Log;
 
+import com.movieplanner.MainActivity;
 import com.movieplanner.Model.Movie;
 import com.movieplanner.Model.MovieEvent;
 import com.movieplanner.R;
@@ -68,6 +69,13 @@ public class FileHandler {
                 String location = splitText[5].replaceAll("^\"|\"$", "");
 
                 eventsList.add(new MovieEvent(id, title, venue, startDate, endDate, location));
+
+                // add lists to AllEvents arraylist after object creation
+
+                MainActivity eventListAll = new MainActivity();
+                eventListAll.AllEvents.add(new MovieEvent(id, title, venue, startDate, endDate, location));
+
+
             }
             Log.i("value","ooo - "+eventsList.size());
         } catch (Resources.NotFoundException e) {

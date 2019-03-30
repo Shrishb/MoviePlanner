@@ -93,7 +93,7 @@
         android:layout_marginTop="40dp"
         android:layout_marginEnd="8dp"
         android:layout_weight="1"
-        android:onClick="SaveNewEvent"
+        android:onClick="editEvent"
         android:text="@string/add_new_event_button"
         android:textAppearance="@style/TextAppearance.AppCompat.Button" />
 

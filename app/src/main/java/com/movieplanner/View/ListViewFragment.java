@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,9 @@ import java.util.List;
 public class ListViewFragment extends Fragment {
 
     private List<MovieEvent> list;
+
+    // List to stare all events
+    public static List<MovieEvent> AllEvents = new ArrayList<>();
 
     //recyclerview objects
     private RecyclerView recyclerView;
@@ -72,19 +76,36 @@ public class ListViewFragment extends Fragment {
         // call filehandler class method to generate events details in card layout
         FileHandler fileHandler = new FileHandler();
         MovieEvent myList;
-        List eventsData = fileHandler.parseEventsFile(getActivity());
+        // Check if static arraylist has value
+        if(AllEvents.isEmpty()){
 
-        for (int i = 0; i <  eventsData.size(); i++) {
-            myList = new MovieEvent(
-                    fileHandler.parseEventsFile(getActivity()).get(i).getEventId(), fileHandler.parseEventsFile(getActivity()).get(i).getEventTitle(),
-                    fileHandler.parseEventsFile(getActivity()).get(i).getStartDate(),  fileHandler.parseEventsFile(getActivity()).get(i).getEndDate(),
-                    fileHandler.parseEventsFile(getActivity()).get(i).getLocation(), fileHandler.parseEventsFile(getActivity()).get(i).getVenue()
-            );
+            // load from file 1st time
+            List<MovieEvent> eventsData = fileHandler.parseEventsFile(getActivity());
 
-            list.add(myList);
+
+            for (int i = 0; i <  eventsData.size(); i++) {
+                myList = new MovieEvent(
+                        eventsData.get(i).getEventId(),
+                        eventsData.get(i).getEventTitle(),
+                        eventsData.get(i).getVenue(),
+                        eventsData.get(i).getStartDate(),
+                        eventsData.get(i).getEndDate(),
+                        eventsData.get(i).getLocation()
+                );
+
+                list.add(myList);
+            }
+
+            adapter = new EventsAdapter(list, getActivity());
+            recyclerView.setAdapter(adapter);
         }
 
-        adapter = new EventsAdapter(list, getActivity());
-        recyclerView.setAdapter(adapter);
+        else{
+            // Load static lists
+            Log.i("size",Integer.toString(AllEvents.size()));
+            Log.i("lists",AllEvents.toString());
+            adapter = new EventsAdapter(AllEvents, getActivity());
+            recyclerView.setAdapter(adapter);
+        }
     }
 }

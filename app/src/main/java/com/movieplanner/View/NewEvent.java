@@ -67,7 +67,7 @@ public class NewEvent extends AppCompatActivity {
 
         // Making New Event object
 
-        MovieEvent newEvent = new MovieEvent("3",eventTitle.getText().toString(),
+        MovieEvent newEvent = new MovieEvent(Integer.toString(MainActivity.AllEvents.size() + 1),eventTitle.getText().toString(),
                 eventVenue.getText().toString(),
                 eventStartDate.getText().toString(),
                 eventEndDate.getText().toString(),
@@ -75,10 +75,15 @@ public class NewEvent extends AppCompatActivity {
 
         // passing values to FileHandlers
 
-        FileHandler newEventvals = new FileHandler();
-        newEventvals.newEvent = newEvent;
+//        FileHandler newEventvals = new FileHandler();
+//        newEventvals.newEvent = newEvent;
+//
+//         newEventvals.parseEventsFile(this);
 
-         newEventvals.parseEventsFile(this);
+        // Passing values to Main activity AllEvents arraylist
+
+        MainActivity newEventsubmit = new MainActivity();
+        newEventsubmit.AllEvents.add(0,newEvent);
 
         startActivity(MainIntent);
     }

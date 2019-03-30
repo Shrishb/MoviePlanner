@@ -6,11 +6,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.movieplanner.Handler.ContactsDataHandler;
 import com.movieplanner.Listener.ContactsDataListener;
+import com.movieplanner.MainActivity;
 import com.movieplanner.Model.Attendees;
 import com.movieplanner.R;
 
@@ -20,6 +22,7 @@ import java.util.List;
 public class EditEvent extends AppCompatActivity {
 
     //declare layout items
+    private String eventID;
     private  EditText editTitle;
     private  EditText editStartDate;
     private  EditText editEndDate;
@@ -65,6 +68,10 @@ public class EditEvent extends AppCompatActivity {
     private void setAllFields(){
         Intent newIntent = getIntent();
 
+        // Values in data members
+
+        eventID = newIntent.getStringExtra("eID");
+
         editTitle = findViewById(R.id.editEventTitle);
         editTitle.setText(newIntent.getStringExtra("eTitle"));
         editTitle.setEnabled(false);
@@ -88,8 +95,11 @@ public class EditEvent extends AppCompatActivity {
         editEventSubmit = findViewById(R.id.editEventSubmit);
         editEventSubmit.setEnabled(false);
 
+
         attendeesField = (EditText) findViewById(R.id.editEventAttendees);
         attendeesField.setOnClickListener(new ContactsDataListener(this));
+
+
 
     }
 
@@ -136,6 +146,28 @@ public class EditEvent extends AppCompatActivity {
         editStartDate.setEnabled(true);
         editLocation.setEnabled(true);
         editEventSubmit.setEnabled(true);
+    }
+
+    // Method for Edit events
+    public void editEvent(View view){
+
+        // MainActivity Loads
+        Intent MainIntent = new Intent(EditEvent.this,
+                MainActivity.class);
+
+        // killing all previous activities
+        MainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+        // Edit Main arraylist after finding the id
+        for(int i=0;i<(MainActivity.AllEvents.size() -1);i++){
+            if(eventID.equals(MainActivity.AllEvents.get(i).getEventId())){
+
+                MainActivity.AllEvents.get(i).setEventTitle(editTitle.getText().toString());
+                // break the loop after changing
+                break;
+            }
+        }
+        startActivity(MainIntent);
     }
 }
 
