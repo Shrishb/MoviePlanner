@@ -12,7 +12,7 @@
         android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
         android:layout_weight="1"
-        android:text="@string/CreateNewEvent"
+        android:text="@string/add_new_movie"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColorLink="@color/colorPrimary" />
 
@@ -24,7 +24,7 @@
         android:layout_weight="1"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/event_title" />
+        android:text="@string/movie_title" />
 
     <EditText
         android:id="@+id/movieYear"
@@ -34,7 +34,14 @@
         android:layout_weight="1"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/event_start_date" />
+        android:text="@string/movie_year" />
+
+    <ImageView
+        android:id="@+id/addMoviePoster"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_weight="1"/>
 
     <Button
         android:id="@+id/NewMovieSubmit"
