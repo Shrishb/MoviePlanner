@@ -1,6 +1,5 @@
-package com.movieplanner;
+package com.movieplanner.View;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,14 +13,20 @@ import android.widget.Button;
 import com.movieplanner.Adapter.EventsAdapter;
 import com.movieplanner.Handler.FileHandler;
 import com.movieplanner.Model.MovieEvent;
-import com.movieplanner.View.NewEvent;
-import com.movieplanner.View.ViewMovies;
+import com.movieplanner.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Fragment1 extends Fragment {
+public class ListViewFragment extends Fragment {
 
+    private List<MovieEvent> list;
+
+    //recyclerview objects
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter adapter;
+
+    //load the xml to be shown in the fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -32,20 +37,10 @@ public class Fragment1 extends Fragment {
         return v;
     }
 
-
-    private Context context;
-    private List<MovieEvent> list;
-
-    //recyclerview objects
-    private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
-
+    // initialize  recyclerview of listview after xml is loaded
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        //super.onCreate(savedInstanceState);
-        //   setContentView(R.layout.activity_main);
-        //context = this;
 
         //initializing views
         recyclerView = (RecyclerView) getView().findViewById(R.id.recyclerView);
@@ -54,12 +49,18 @@ public class Fragment1 extends Fragment {
 
         list = new ArrayList<>();
 
-        Button button = (Button) getView().findViewById(R.id.addEvents);
-        button.setOnClickListener(new View.OnClickListener() {
+        Button callNewEvent = (Button) getView().findViewById(R.id.addEvents);
+        callNewEvent.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent newEventIntent = new Intent(getActivity(),
-                        NewEvent.class);
+                Intent newEventIntent = new Intent(getActivity(), NewEvent.class);
+                startActivity(newEventIntent);
+            }
+        });
 
+        Button showMovies = (Button) getView().findViewById(R.id.viewMovies);
+        showMovies.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent newEventIntent = new Intent(getActivity(), ViewMovies.class);
                 startActivity(newEventIntent);
             }
         });
@@ -76,6 +77,7 @@ public class Fragment1 extends Fragment {
         for (int i = 0; i <  eventsData.size(); i++) {
             myList = new MovieEvent(
                     fileHandler.parseEventsFile(getActivity()).get(i).getEventId(), fileHandler.parseEventsFile(getActivity()).get(i).getEventTitle(),
+                    fileHandler.parseEventsFile(getActivity()).get(i).getStartDate(),  fileHandler.parseEventsFile(getActivity()).get(i).getEndDate(),
                     fileHandler.parseEventsFile(getActivity()).get(i).getLocation(), fileHandler.parseEventsFile(getActivity()).get(i).getVenue()
             );
 
@@ -84,23 +86,5 @@ public class Fragment1 extends Fragment {
 
         adapter = new EventsAdapter(list, getActivity());
         recyclerView.setAdapter(adapter);
-    }
-
-    //call new intent to load new_event view
-    public void onNewEventClick(View args){
-
-        Intent newEventIntent = new Intent(getActivity(),
-                NewEvent.class);
-
-        startActivity(newEventIntent);
-    }
-
-    //call new intent to load movies_list view
-    public void onViewMoviesClick(View args){
-
-        Intent viewMoviesIntent = new Intent(getActivity(),
-                ViewMovies.class);
-
-        startActivity(viewMoviesIntent);
     }
 }

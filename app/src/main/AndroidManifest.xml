@@ -19,19 +19,12 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.movieplanner.NewMainActivity">
+        <activity android:name="com.movieplanner.MainActivity">
             <intent-filter>
                 <action android:name="com." />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <activity android:name="com.movieplanner.View.NewEvent" android:parentActivityName=".MainActivity">
-
-        </activity>
-        <activity android:name="com.movieplanner.MainActivity" android:parentActivityName=".NewMainActivity">
-
         </activity>
 
         <activity android:name="com.movieplanner.View.ViewMovies" android:parentActivityName=".MainActivity">
