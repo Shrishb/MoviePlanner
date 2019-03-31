@@ -5,4 +5,13 @@
     <color name="colorAccent">#D81B60</color>
     <color name="colorGreen">#8bbe1b</color>
     <color name="colorBlue">#6638e2</color>
+    <color name="colour_primary">#4484f6</color>
+    <color name="colour_primary_dark">#284f93</color>
+    <color name="colour_accent">#f6b643</color>
+    <color name="nav_icon_tint">#777777</color>
+    <color name="action_mode">#999999</color>
+    <color name="action_mode_dark">#666666</color>
+    <color name="selected_item">#e8e8e8</color>
+    <color name="calendar_day_header">#555555</color>
+    <color name="calendar_today">#4b82ff</color>
 </resources>

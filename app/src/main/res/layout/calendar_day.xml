@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minHeight="@dimen/calendar_day_min_size"
+    android:minWidth="@dimen/calendar_day_min_size">
+
+    <!-- Image to indicate selected date -->
+    <ImageView
+        android:id="@+id/calendar_date_selected"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:tint="@color/colour_accent"
+        android:alpha="0.75"
+        android:scaleX="2.5"
+        android:scaleY="2.5"
+        android:visibility="invisible"/>
+
+    <!-- Day of month -->
+    <TextView
+        android:id="@+id/calendar_date_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
+
+    <!-- Image to indicate event scheduled on this date -->
+    <ImageView
+        android:id="@+id/calendar_date_has_event_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:scaleX="0.35"
+        android:scaleY="0.35"
+        android:tint="@color/colour_primary_dark"
+        android:visibility="invisible"/>
+
+</RelativeLayout>
