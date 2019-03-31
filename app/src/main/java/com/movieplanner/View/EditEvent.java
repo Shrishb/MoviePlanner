@@ -47,7 +47,7 @@ public class EditEvent extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_event);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.editToolbar);
         setSupportActionBar(toolbar);
 
         attendees = new ArrayList<>();

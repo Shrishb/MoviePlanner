@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.movieplanner.View.CalendarFragment;
 import com.movieplanner.View.ListViewFragment;
 
 public class PageAdapter extends FragmentPagerAdapter {
@@ -24,7 +25,7 @@ public class PageAdapter extends FragmentPagerAdapter {
             case 0:
                 return new ListViewFragment();
             case 1:
-                return new ListViewFragment();
+                return new CalendarFragment();
             default:
                 return null;
         }
