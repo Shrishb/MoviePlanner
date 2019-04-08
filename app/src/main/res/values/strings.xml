@@ -25,5 +25,7 @@
     <string name="calendar_wednesday">wednesday</string>
     <string name="calendar_tuesday">tuesday</string>
     <string name="calendar_sunday">sunday</string>
-    <string name="calendar_monday">moday</string>
+    <string name="calendar_monday">monday</string>
+    <string name="list_view">List View</string>
+    <string name="calendar_view">Calendar View</string>
 </resources>
