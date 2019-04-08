@@ -56,7 +56,7 @@ public class ListViewFragment extends Fragment {
         Button callNewEvent = (Button) getView().findViewById(R.id.addEvents);
         callNewEvent.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent newEventIntent = new Intent(getActivity(), NewEvent.class);
+                Intent newEventIntent = new Intent(getActivity(), AddNewEvent.class);
                 startActivity(newEventIntent);
             }
         });

@@ -28,13 +28,13 @@
             android:id="@+id/tabListView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="List View" />
+            android:text="@string/list_view" />
 
         <android.support.design.widget.TabItem
             android:id="@+id/tabCalendar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Calendar View" />
+            android:text="@string/calendar_view" />
 
     </android.support.design.widget.TabLayout>
 

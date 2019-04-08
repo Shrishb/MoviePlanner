@@ -9,6 +9,7 @@ import android.widget.EditText;
 
 import com.movieplanner.Handler.ContactsDataHandler;
 import com.movieplanner.Listener.ContactsDataListener;
+import com.movieplanner.Listener.DatePickerDialogListener;
 import com.movieplanner.MainActivity;
 import com.movieplanner.Model.Attendees;
 import com.movieplanner.Model.MovieEvent;
@@ -17,10 +18,15 @@ import com.movieplanner.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NewEvent extends AppCompatActivity {
+public class AddNewEvent extends AppCompatActivity {
 
     private EditText attendeesField;
     private List<Attendees> attendees;
+    EditText eventTitle ;
+    EditText eventStartDate;
+    EditText eventEndDate ;
+    EditText eventLocation ;
+    EditText eventVenue;
 
     //create new event view
     @Override
@@ -28,16 +34,15 @@ public class NewEvent extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_event);
 
-        attendeesField = (EditText) findViewById(R.id.addEventAttendees);
-        attendeesField.setOnClickListener(new ContactsDataListener(this));
         attendees = new ArrayList<>();
 
+        setUiElements();
     }
 
     //call activity_main intent on save button click
     public void SaveNewEvent(View view){
 
-        Intent MainIntent = new Intent(NewEvent.this,
+        Intent MainIntent = new Intent(AddNewEvent.this,
                 MainActivity.class);
 
         // killing all previous activities
@@ -45,21 +50,8 @@ public class NewEvent extends AppCompatActivity {
 
         // getting all values of form data after new event submit
 
-        EditText eventTitle = (EditText) findViewById(R.id.eventTitle);
-
-        EditText eventStartDate = (EditText) findViewById(R.id.eventStartDate);
-
-        EditText eventEndDate = (EditText) findViewById(R.id.eventEndDate);
-
-        EditText eventLocation = (EditText) findViewById(R.id.eventLocation);
-
-        EditText eventVenue = findViewById(R.id.eventVenue);
-
-
         MainIntent.putExtra("EventTitle",eventTitle.getText());
-
         MainIntent.putExtra("eventStartDate",eventStartDate.getText());
-
         MainIntent.putExtra("eventEndDate",eventEndDate.getText());
         MainIntent.putExtra("eventLocation",eventLocation.getText());
         MainIntent.putExtra("eventVenue",eventVenue.getText());
@@ -78,6 +70,24 @@ public class NewEvent extends AppCompatActivity {
         listViewFragment.AllEvents.add(0,newEvent);
 
         startActivity(MainIntent);
+    }
+
+    private void setUiElements(){
+
+        eventTitle = (EditText) findViewById(R.id.eventTitle);
+
+        eventStartDate = (EditText) findViewById(R.id.eventStartDate);
+        new DatePickerDialogListener(this, eventStartDate);
+
+        eventEndDate = (EditText) findViewById(R.id.eventEndDate);
+        new DatePickerDialogListener(this, eventEndDate);
+
+        eventLocation = (EditText) findViewById(R.id.eventLocation);
+        eventVenue = findViewById(R.id.eventVenue);
+
+        attendeesField = (EditText) findViewById(R.id.addEventAttendees);
+        attendeesField.setOnClickListener(new ContactsDataListener(this));
+
     }
 
     //todo: move this code to common to avoid duplicate code
