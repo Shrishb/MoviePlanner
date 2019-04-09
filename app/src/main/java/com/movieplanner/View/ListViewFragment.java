@@ -61,14 +61,6 @@ public class ListViewFragment extends Fragment {
             }
         });
 
-        Button showMovies = (Button) getView().findViewById(R.id.viewMovies);
-        showMovies.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent newEventIntent = new Intent(getActivity(), ViewMovies.class);
-                startActivity(newEventIntent);
-            }
-        });
-
         loadRecyclerViewItem();
     }
 

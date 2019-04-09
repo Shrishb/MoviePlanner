@@ -61,13 +61,4 @@ public class ViewMovies extends AppCompatActivity {
         adapter = new MoviesAdapter(list, this);
         moviesRecyclerView.setAdapter(adapter);
     }
-
-    //call new intent to load new_movie view
-    public void onNewMovieClick(View args){
-
-        Intent newMovieIntent = new Intent(ViewMovies.this,
-                NewMovie.class);
-
-        startActivity(newMovieIntent);
-    }
 }

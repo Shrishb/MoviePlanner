@@ -11,13 +11,6 @@
     tools:context="com.movieplanner.View.ViewMovies">
 
 
-    <Button
-        android:id="@+id/addNewMovie"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onNewMovieClick"
-        android:text="@string/add_new_movie" />
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/moviesRecyclerView"
         android:layout_width="match_parent"
