@@ -1,8 +1,10 @@
 package com.movieplanner.Adapter;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -12,12 +14,17 @@ import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
+import com.movieplanner.MainActivity;
 import com.movieplanner.Model.Movie;
 import com.movieplanner.R;
+import com.movieplanner.View.AddNewEvent;
+import com.movieplanner.View.EditEvent;
+import com.movieplanner.View.ViewMovies;
 
 import java.util.List;
 
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>{
+    private static final int RES_CODE_A = 3;
     private List<Movie> moviesList;
     private Context context;
 
@@ -33,7 +40,6 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesView
             title = (TextView) view.findViewById(R.id.movieTitle);
             year = (TextView) view.findViewById(R.id.movieYear);
             poster = (ImageView) view.findViewById(R.id.moviePoster);
-            menuOption = (TextView) view.findViewById(R.id.menuOptions);
         }
     }
 
@@ -66,28 +72,11 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesView
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
-                builder1.setMessage("Write your message here.");
-                builder1.setCancelable(true);
 
-                builder1.setPositiveButton(
-                        "Yes",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        });
-
-                builder1.setNegativeButton(
-                        "No",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        });
-
-                AlertDialog alert11 = builder1.create();
-                alert11.show();
+                Intent returnIntent = new Intent();
+                returnIntent.putExtra("mID", moviesList.get(holder.getAdapterPosition()).getId());
+                ((ViewMovies)context).setResult(RES_CODE_A, returnIntent);
+                ((ViewMovies)context).finish();
             }
         });
     }

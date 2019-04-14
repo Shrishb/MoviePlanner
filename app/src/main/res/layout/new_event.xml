@@ -84,6 +84,21 @@
             android:inputType="text" />
     </android.support.design.widget.TextInputLayout>
 
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:hint="@string/add_new_movie">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/addEventMovie"
+            android:layout_width="match_parent"
+            android:layout_marginTop="40dp"
+            android:layout_height="match_parent"
+            android:focusable="false"
+            android:inputType="text" />
+    </android.support.design.widget.TextInputLayout>
+
     <Button
         android:id="@+id/NewEventSubmit"
         android:layout_width="match_parent"
