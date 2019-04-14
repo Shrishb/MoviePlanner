@@ -1,6 +1,5 @@
 package com.movieplanner.View;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,8 +8,8 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.movieplanner.Handler.ContactsDataHandler;
-import com.movieplanner.Listener.ContactsDataListener;
-import com.movieplanner.Listener.DatePickerDialogListener;
+import com.movieplanner.Controller.Listener.ContactsDataListener;
+import com.movieplanner.Controller.Listener.DatePickerDialogListener;
 import com.movieplanner.MainActivity;
 import com.movieplanner.Model.Attendees;
 import com.movieplanner.Model.MovieEvent;

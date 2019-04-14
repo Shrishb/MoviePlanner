@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,7 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.movieplanner.Handler.ContactsDataHandler;
-import com.movieplanner.Listener.ContactsDataListener;
+import com.movieplanner.Controller.Listener.ContactsDataListener;
 import com.movieplanner.MainActivity;
 import com.movieplanner.Model.Attendees;
 import com.movieplanner.R;
@@ -159,11 +160,17 @@ public class EditEvent extends AppCompatActivity {
         // killing all previous activities
         MainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
+
         // Edit Main arraylist after finding the id
-        for(int i=0;i<(ListViewFragment.AllEvents.size() -1);i++){
+        for(int i=0;i<=(ListViewFragment.AllEvents.size() -1);i++){
             if(eventID.equals(ListViewFragment.AllEvents.get(i).getEventId())){
 
+                // editing event info
                 ListViewFragment.AllEvents.get(i).setEventTitle(editTitle.getText().toString());
+                ListViewFragment.AllEvents.get(i).setStartDate(editStartDate.getText().toString());
+                ListViewFragment.AllEvents.get(i).setVenue(editVenue.getText().toString());
+                ListViewFragment.AllEvents.get(i).setEndDate(editEndDate.getText().toString());
+                ListViewFragment.AllEvents.get(i).setLocation(editLocation.getText().toString());
                 // break the loop after changing
                 break;
             }

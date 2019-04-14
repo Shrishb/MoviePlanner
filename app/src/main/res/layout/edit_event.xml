@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/editToolbar"
@@ -23,7 +29,6 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
-        android:layout_weight="1"
         android:text="@string/edit_event"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColorLink="@color/colorPrimary" />
@@ -33,7 +38,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:layout_weight="1"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="@string/event_title" />
@@ -43,7 +47,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:layout_weight="1"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="@string/event_start_date" />
@@ -53,7 +56,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:layout_weight="1"
         android:ems="10"
         android:inputType="textPersonName"
         android:singleLine="true"
@@ -64,7 +66,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:layout_weight="1"
         android:ems="10"
         android:inputType="textPersonName"
         android:singleLine="true"
@@ -76,8 +77,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:ems="10"
-        android:singleLine="true"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:singleLine="true" />
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
@@ -88,8 +89,8 @@
         <android.support.design.widget.TextInputEditText
             android:id="@+id/editEventAttendees"
             android:layout_width="match_parent"
-            android:layout_marginTop="40dp"
             android:layout_height="match_parent"
+            android:layout_marginTop="40dp"
             android:focusable="false"
             android:inputType="text" />
 
@@ -102,9 +103,9 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="8dp"
-        android:layout_weight="1"
         android:onClick="editEvent"
         android:text="@string/add_new_event_button"
         android:textAppearance="@style/TextAppearance.AppCompat.Button" />
+    </LinearLayout>
 
-</LinearLayout>
+</ScrollView>
