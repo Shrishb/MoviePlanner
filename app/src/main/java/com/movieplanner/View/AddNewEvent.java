@@ -124,7 +124,7 @@ public class AddNewEvent extends AppCompatActivity {
                 updateAttendeesField();
             }
             else if (resultCode == RES_CODE_A){
-                    addEventMovie.setText(data.getStringExtra("mID"));
+                    addEventMovie.setText(data.getStringExtra("mName"));
                 }
             }
     }
