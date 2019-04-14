@@ -43,4 +43,19 @@ public class Movie implements IMovie {
         return poster;
     }
 
+    public void setMovieId(String movieId) {
+        this.movieId = movieId;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setYear(String year) {
+        Year = year;
+    }
+
+    public void setPoster(String poster) {
+        this.poster = poster;
+    }
 }
