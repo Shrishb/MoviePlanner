@@ -1,5 +1,6 @@
 package com.movieplanner.View;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -27,6 +28,8 @@ public class AddNewEvent extends AppCompatActivity {
     EditText eventEndDate ;
     EditText eventLocation ;
     EditText eventVenue;
+    EditText addEventMovie;
+    private static final int RES_CODE_A = 3;
 
     //create new event view
     @Override
@@ -72,6 +75,7 @@ public class AddNewEvent extends AppCompatActivity {
         startActivity(MainIntent);
     }
 
+    // declare all the textview elements
     private void setUiElements(){
 
         eventTitle = (EditText) findViewById(R.id.eventTitle);
@@ -88,6 +92,13 @@ public class AddNewEvent extends AppCompatActivity {
         attendeesField = (EditText) findViewById(R.id.addEventAttendees);
         attendeesField.setOnClickListener(new ContactsDataListener(this));
 
+        addEventMovie = (EditText) findViewById(R.id.addEventMovie);
+        addEventMovie.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                Intent intent = new Intent(AddNewEvent.this, ViewMovies.class);
+                startActivityForResult(intent, 2);
+            }
+        });
     }
 
     //todo: move this code to common to avoid duplicate code
@@ -112,8 +123,13 @@ public class AddNewEvent extends AppCompatActivity {
                 attendees.add(new Attendees(name, email));
                 updateAttendeesField();
             }
-        }
+            else if (resultCode == RES_CODE_A){
+                    addEventMovie.setText(data.getStringExtra("mID"));
+                }
+            }
     }
+
+    // fetch all selected contacts and display in the textview
     private void updateAttendeesField()
     {
         List<String> attendeesNames = new ArrayList<>();

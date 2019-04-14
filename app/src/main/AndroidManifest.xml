@@ -27,16 +27,13 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.movieplanner.View.AddNewEvent" android:parentActivityName=".MainActivity">
+        <activity android:name="com.movieplanner.View.AddNewEvent" android:launchMode="singleTask" android:parentActivityName=".MainActivity">
 
         </activity>
         <activity android:name="com.movieplanner.View.ViewMovies" android:parentActivityName=".MainActivity">
 
         </activity>
         <activity android:name="com.movieplanner.View.EditEvent" android:parentActivityName=".MainActivity">
-
-        </activity>
-        <activity android:name="com.movieplanner.View.NewMovie" android:parentActivityName=".MainActivity">
 
         </activity>
     </application>
