@@ -30,6 +30,7 @@ public class EditEvent extends AppCompatActivity {
     private  EditText editEndDate;
     private  EditText editLocation;
     private  EditText editVenue;
+    private  EditText editMovieName;
     private Button editEventSubmit;
     private EditText attendeesField;
     private List<Attendees> attendees;
@@ -98,6 +99,13 @@ public class EditEvent extends AppCompatActivity {
         editLocation.setText(newIntent.getStringExtra("eLocation"));
         editLocation.setEnabled(false);
 
+
+        editMovieName = findViewById(R.id.editEventMovie);
+        editMovieName.setText(newIntent.getStringExtra("mTitle"));
+        editMovieName.setEnabled(false);
+
+
+
         editEventSubmit = findViewById(R.id.editEventSubmit);
         editEventSubmit.setVisibility(View.INVISIBLE);
 
@@ -151,6 +159,7 @@ public class EditEvent extends AppCompatActivity {
         editEventSubmit.setVisibility(View.VISIBLE);
         attendeesField.setEnabled(true);
         attendeesField.setOnClickListener(new ContactsDataListener(this));
+        editMovieName.setEnabled(true);
     }
 
     // Method for Edit events

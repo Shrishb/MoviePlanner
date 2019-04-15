@@ -27,6 +27,10 @@ public class Movie implements IMovie {
         this.movieId = title.substring(0,3) + year;
     }
 
+    // default constructor
+    public Movie(){}
+
+
     public String getId() {
         return movieId;
     }

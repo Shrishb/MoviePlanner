@@ -19,7 +19,7 @@ import java.util.List;
 
 public class ViewMovies extends AppCompatActivity {
     private Context context;
-    private List<Movie> list;
+    public static List<Movie> list;
 
     //recyclerview objects
     private RecyclerView moviesRecyclerView;

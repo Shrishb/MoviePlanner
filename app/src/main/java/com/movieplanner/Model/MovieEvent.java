@@ -5,7 +5,7 @@ import com.movieplanner.Model.Interface.IEvent;
 import java.util.List;
 
 public class MovieEvent implements IEvent {
-
+    // Data memebers
     private String eventId;
 
     private String eventTitle;
@@ -18,10 +18,14 @@ public class MovieEvent implements IEvent {
 
     private String location;
 
-    private List<String> Contacts;
+    private List<Attendees> Contacts;
+
+    private Movie moviedetails;
+
+
 
     public MovieEvent(String eventId, String eventTitle, String startDate,
-                      String endDate, String venue, String location, List<String> contacts){
+                      String endDate, String venue, String location, List<Attendees> contacts){
         this.eventId =eventId;
         this.eventTitle = eventTitle;
         this.startDate = startDate;
@@ -39,6 +43,18 @@ public class MovieEvent implements IEvent {
         this.startDate = startDate;
         this.endDate = endDate;
         this.location = location;
+    }
+
+    public MovieEvent(String eventId, String eventTitle,String startDate,
+                      String endDate, String venue ,String location, Movie movieinfo){
+        this.eventId =eventId;
+        this.eventTitle = eventTitle;
+        this.venue = venue;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.location = location;
+        this.moviedetails = movieinfo;
+        //this.Contacts = contacts;
     }
 
     // Getter and setters
@@ -67,11 +83,17 @@ public class MovieEvent implements IEvent {
         return location;
     }
 
-    public List<String> getContacts() {
+    public List<Attendees> getContacts() {
         return Contacts;
     }
 
+    public Movie getMoviedetails() {
+        return moviedetails;
+    }
 
+    public void setMoviedetails(Movie moviedetails) {
+        this.moviedetails = moviedetails;
+    }
 
     public void setEventId(String eventId) {
         this.eventId = eventId;
@@ -97,7 +119,8 @@ public class MovieEvent implements IEvent {
         this.location = location;
     }
 
-    public void setContacts(List<String> contacts) {
+
+    public void setContacts(List<Attendees> contacts) {
         Contacts = contacts;
     }
 }
