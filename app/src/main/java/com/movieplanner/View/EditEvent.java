@@ -102,6 +102,7 @@ public class EditEvent extends AppCompatActivity {
         editEventSubmit.setVisibility(View.INVISIBLE);
 
         attendeesField = (EditText) findViewById(R.id.editEventAttendees);
+        attendeesField.setEnabled(false);
         attendeesField.setOnClickListener(new ContactsDataListener(this));
     }
 
@@ -148,6 +149,8 @@ public class EditEvent extends AppCompatActivity {
         editStartDate.setEnabled(true);
         editLocation.setEnabled(true);
         editEventSubmit.setVisibility(View.VISIBLE);
+        attendeesField.setEnabled(true);
+        attendeesField.setOnClickListener(new ContactsDataListener(this));
     }
 
     // Method for Edit events

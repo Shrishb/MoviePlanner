@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
@@ -21,7 +22,8 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventsView
     private Context context;
 
     public class EventsViewHolder extends RecyclerView.ViewHolder {
-    public TextView id, title, location,startDate, endDate, menuOption;
+    public TextView id, title, location,startDate, endDate;
+    ImageView deleteEventBtn;
 
     //constructor
     //todo : need to add other properties as well
@@ -31,7 +33,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventsView
         startDate = (TextView) view.findViewById(R.id.startDate);
         endDate = (TextView) view.findViewById(R.id.endDate);
         location = (TextView) view.findViewById(R.id.location);
-        menuOption = (TextView) view.findViewById(R.id.menuOptions);
+        deleteEventBtn = (ImageView) view.findViewById(R.id.event_delete_button);
         }
     }
 
@@ -58,36 +60,19 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventsView
         holder.startDate.setText(movieEvent.getStartDate());
         holder.endDate.setText(movieEvent.getEndDate());
 
-        holder.title.setOnClickListener(new View.OnClickListener() {
+        holder.deleteEventBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //will show popup menu here
-                PopupMenu popup = new PopupMenu(context, holder.menuOption);
+                eventsList.remove(holder.getAdapterPosition());
+                notifyItemRemoved(holder.getAdapterPosition());
+                notifyItemRangeChanged(holder.getAdapterPosition(), eventsList.size());
+            }
+        });
 
-                //inflating menu from xml resource
-                popup.inflate(R.menu.events_cardview_options);
-                //adding click listener
-                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        switch (item.getItemId()) {
-
-                            // for delete option remove object from arraylist and update recyclerview
-                            case R.id.eventsDeleteOption:
-                                eventsList.remove(holder.getAdapterPosition());
-                                notifyItemRemoved(holder.getAdapterPosition());
-                                notifyItemRangeChanged(holder.getAdapterPosition(), eventsList.size());
-                                break;
-
-                            case R.id.eventsEditOption:
-                                onEditEventDetails(holder);
-                                break;
-                        }
-                        return false;
-                    }
-                });
-                //displaying the popup
-                popup.show();
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onEditEventDetails(holder);
             }
         });
     }
