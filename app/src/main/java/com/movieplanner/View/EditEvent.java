@@ -12,10 +12,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.movieplanner.Controller.Listener.Miscelleneaous;
 import com.movieplanner.Handler.ContactsDataHandler;
 import com.movieplanner.Controller.Listener.ContactsDataListener;
 import com.movieplanner.MainActivity;
 import com.movieplanner.Model.Attendees;
+import com.movieplanner.Model.Movie;
 import com.movieplanner.R;
 
 import java.util.ArrayList;
@@ -34,6 +36,7 @@ public class EditEvent extends AppCompatActivity {
     private Button editEventSubmit;
     private EditText attendeesField;
     private List<Attendees> attendees;
+    private static final int RES_CODE_A = 3;
 
     // bind layout menu on top to display edit icons
     @Override
@@ -115,27 +118,6 @@ public class EditEvent extends AppCompatActivity {
     }
 
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
-            if (resultCode == RESULT_OK)
-            {
-                ContactsDataHandler contactsHandler = new ContactsDataHandler(
-                        this, data);
-                String name = "";
-                String email = "";
-                try
-                {
-                    name = contactsHandler.getContactName();
-                    email = contactsHandler.getContactEmail();
-                }
-                catch (ContactsDataHandler.ContactQueryException e)
-                {
-                }
-                attendees.add(new Attendees(name, email));
-                updateAttendeesField();
-            }
-    }
 
 
     // update the list with the contact names derived from contact manager
@@ -160,6 +142,40 @@ public class EditEvent extends AppCompatActivity {
         attendeesField.setEnabled(true);
         attendeesField.setOnClickListener(new ContactsDataListener(this));
         editMovieName.setEnabled(true);
+
+        editMovieName.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                Intent intent = new Intent(EditEvent.this, ViewMovies.class);
+                startActivityForResult(intent, 2);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        {
+            if (resultCode == RESULT_OK)
+            {
+                ContactsDataHandler contactsManager = new ContactsDataHandler(
+                        this, data);
+                String name = "";
+                String email = "";
+                try
+                {
+                    name = contactsManager.getContactName();
+                    email = contactsManager.getContactEmail();
+                }
+                catch (ContactsDataHandler.ContactQueryException e)
+                {
+                }
+                attendees.add(new Attendees(name, email));
+                updateAttendeesField();
+            }
+            else if (resultCode == RES_CODE_A){
+                editMovieName.setText(data.getStringExtra("mName"));
+            }
+        }
     }
 
     // Method for Edit events
@@ -183,6 +199,12 @@ public class EditEvent extends AppCompatActivity {
                 ListViewFragment.AllEvents.get(i).setVenue(editVenue.getText().toString());
                 ListViewFragment.AllEvents.get(i).setEndDate(editEndDate.getText().toString());
                 ListViewFragment.AllEvents.get(i).setLocation(editLocation.getText().toString());
+
+                // find movie object and pass below
+
+                // get Movie object
+                Movie movieObj = Miscelleneaous.findMovieObjByID(ViewMovies.list, editMovieName.getText().toString());
+                ListViewFragment.AllEvents.get(i).setMoviedetails(movieObj);
                 // break the loop after changing
                 break;
             }
