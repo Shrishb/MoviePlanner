@@ -82,7 +82,8 @@ public class ListViewFragment extends Fragment {
                         eventsData.get(i).getVenue(),
                         eventsData.get(i).getStartDate(),
                         eventsData.get(i).getEndDate(),
-                        eventsData.get(i).getLocation()
+                        eventsData.get(i).getLocation(),
+                        eventsData.get(i).getContacts()
                 );
 
                 list.add(myList);

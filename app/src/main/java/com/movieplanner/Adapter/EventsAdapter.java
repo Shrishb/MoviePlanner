@@ -22,7 +22,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventsView
     private Context context;
 
     public class EventsViewHolder extends RecyclerView.ViewHolder {
-    public TextView id, title, location,startDate, endDate;
+    public TextView id, title, attendeesCount,startDate, endDate;
     ImageView deleteEventBtn;
 
     //constructor
@@ -32,7 +32,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventsView
         title = (TextView) view.findViewById(R.id.title);
         startDate = (TextView) view.findViewById(R.id.startDate);
         endDate = (TextView) view.findViewById(R.id.endDate);
-        location = (TextView) view.findViewById(R.id.location);
+        attendeesCount = (TextView) view.findViewById(R.id.attendeesCount);
         deleteEventBtn = (ImageView) view.findViewById(R.id.event_delete_button);
         }
     }
@@ -56,7 +56,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventsView
     public void onBindViewHolder(final EventsAdapter.EventsViewHolder holder, int position) {
         MovieEvent movieEvent = eventsList.get(position);
         holder.title.setText(movieEvent.getEventTitle());
-        holder.location.setText(movieEvent.getLocation());
+        //holder.attendeesCount.setText(movieEvent.getContacts());
         holder.startDate.setText(movieEvent.getStartDate());
         holder.endDate.setText(movieEvent.getEndDate());
 

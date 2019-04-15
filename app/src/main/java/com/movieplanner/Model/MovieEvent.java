@@ -6,8 +6,6 @@ import java.util.List;
 
 public class MovieEvent implements IEvent {
 
-
-
     private String eventId;
 
     private String eventTitle;

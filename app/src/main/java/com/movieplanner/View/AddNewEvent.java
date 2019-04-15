@@ -57,6 +57,7 @@ public class AddNewEvent extends AppCompatActivity {
         MainIntent.putExtra("eventEndDate",eventEndDate.getText());
         MainIntent.putExtra("eventLocation",eventLocation.getText());
         MainIntent.putExtra("eventVenue",eventVenue.getText());
+        MainIntent.putExtra("eventAttendees",attendees.size());
 
         // Making New Event object
 
@@ -64,7 +65,7 @@ public class AddNewEvent extends AppCompatActivity {
                 eventVenue.getText().toString(),
                 eventStartDate.getText().toString(),
                 eventEndDate.getText().toString(),
-                eventLocation.getText().toString() );
+                eventLocation.getText().toString(), returnAttendees());
 
         // passing values to FileHandlers
 
@@ -134,9 +135,19 @@ public class AddNewEvent extends AppCompatActivity {
         List<String> attendeesNames = new ArrayList<>();
         for (Attendees c : attendees)
         {
-            System.out.println(c);
             attendeesNames.add(c.toString());
         }
         attendeesField.setText(TextUtils.join(", ", attendeesNames));
+    }
+
+    // fetch all selected contacts and display in the textview
+    private List<String> returnAttendees()
+    {
+        List<String> attendeesNames = new ArrayList<>();
+        for (Attendees c : attendees)
+        {
+            attendeesNames.add(c.toString());
+        }
+        return attendeesNames;
     }
 }

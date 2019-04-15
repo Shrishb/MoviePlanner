@@ -39,7 +39,7 @@
                 android:textAppearance="?android:textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/location"
+                android:id="@+id/attendeesCount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/endDate"
