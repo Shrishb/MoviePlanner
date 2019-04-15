@@ -22,7 +22,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventsView
     private Context context;
 
     public class EventsViewHolder extends RecyclerView.ViewHolder {
-    public TextView id, title, attendeesCount,startDate, endDate;
+    public TextView id, title, attendeesCount,startDate, endDate, MovieName;
     ImageView deleteEventBtn;
 
     //constructor
@@ -32,7 +32,8 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventsView
         title = (TextView) view.findViewById(R.id.title);
         startDate = (TextView) view.findViewById(R.id.startDate);
         endDate = (TextView) view.findViewById(R.id.endDate);
-        attendeesCount = (TextView) view.findViewById(R.id.attendeesCount);
+        MovieName = (TextView) view.findViewById(R.id.MovieName);
+        //attendeesCount = (TextView) view.findViewById(R.id.attendeesCount);
         deleteEventBtn = (ImageView) view.findViewById(R.id.event_delete_button);
         }
     }
@@ -59,6 +60,10 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventsView
         //holder.attendeesCount.setText(movieEvent.getContacts());
         holder.startDate.setText(movieEvent.getStartDate());
         holder.endDate.setText(movieEvent.getEndDate());
+        if(movieEvent.getMoviedetails() != null){
+            holder.MovieName.setText(movieEvent.getMoviedetails().getTitle());
+        }
+
 
         holder.deleteEventBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,6 +99,13 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventsView
         MainIntent.putExtra("eEndDate", eventsList.get(holder.getAdapterPosition()).getEndDate());
         MainIntent.putExtra("eLocation", eventsList.get(holder.getAdapterPosition()).getLocation());
         MainIntent.putExtra("eVenue", eventsList.get(holder.getAdapterPosition()).getVenue());
+        if(eventsList.get(holder.getAdapterPosition()).getMoviedetails() != null){
+            MainIntent.putExtra("mTitle", eventsList.get(holder.getAdapterPosition()).getMoviedetails().getTitle());
+        }
+        else{
+            MainIntent.putExtra("mTitle", "");
+        }
+
 
         context.startActivity(MainIntent);
     }

@@ -46,7 +46,7 @@ public class MovieEvent implements IEvent {
     }
 
     public MovieEvent(String eventId, String eventTitle,String startDate,
-                      String endDate, String venue ,String location, List<Attendees> contacts, Movie movieinfo){
+                      String endDate, String venue ,String location, Movie movieinfo){
         this.eventId =eventId;
         this.eventTitle = eventTitle;
         this.venue = venue;
@@ -54,7 +54,7 @@ public class MovieEvent implements IEvent {
         this.endDate = endDate;
         this.location = location;
         this.moviedetails = movieinfo;
-        this.Contacts = contacts;
+        //this.Contacts = contacts;
     }
 
     // Getter and setters

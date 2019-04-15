@@ -4,14 +4,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
+import com.movieplanner.Controller.Listener.Miscelleneaous;
 import com.movieplanner.Handler.ContactsDataHandler;
 import com.movieplanner.Controller.Listener.ContactsDataListener;
 import com.movieplanner.Controller.Listener.DatePickerDialogListener;
 import com.movieplanner.MainActivity;
 import com.movieplanner.Model.Attendees;
+import com.movieplanner.Model.Movie;
 import com.movieplanner.Model.MovieEvent;
 import com.movieplanner.R;
 
@@ -57,6 +60,10 @@ public class AddNewEvent extends AppCompatActivity {
         MainIntent.putExtra("eventEndDate",eventEndDate.getText());
         MainIntent.putExtra("eventLocation",eventLocation.getText());
         MainIntent.putExtra("eventVenue",eventVenue.getText());
+
+        // get Movie object
+         Movie movieObj = Miscelleneaous.findMovieObjByID(ViewMovies.list, addEventMovie.getText().toString());
+        //Log.i("Movieval", addEventMovie.getText().toString());
         MainIntent.putExtra("eventAttendees",attendees.size());
 
         // Making New Event object
@@ -65,7 +72,9 @@ public class AddNewEvent extends AppCompatActivity {
                 eventVenue.getText().toString(),
                 eventStartDate.getText().toString(),
                 eventEndDate.getText().toString(),
-                eventLocation.getText().toString());
+                eventLocation.getText().toString(),
+                movieObj
+                );
 
         // passing values to FileHandlers
 
