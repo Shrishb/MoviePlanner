@@ -1,5 +1,7 @@
 package com.movieplanner.Model.Interface;
 
+import com.movieplanner.Model.Attendees;
+
 import java.util.List;
 
 public interface IEvent {
@@ -15,5 +17,5 @@ public interface IEvent {
 
      String getLocation();
 
-     List<String> getContacts();
+     List<Attendees> getContacts();
 }

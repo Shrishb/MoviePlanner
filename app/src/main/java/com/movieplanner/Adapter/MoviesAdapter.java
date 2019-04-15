@@ -75,6 +75,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesView
 
                 Intent returnIntent = new Intent();
                 returnIntent.putExtra("mName", moviesList.get(holder.getAdapterPosition()).getTitle());
+                returnIntent.putExtra("mID",moviesList.get(holder.getAdapterPosition()).getId());
                 ((ViewMovies)context).setResult(RES_CODE_A, returnIntent);
                 ((ViewMovies)context).finish();
             }

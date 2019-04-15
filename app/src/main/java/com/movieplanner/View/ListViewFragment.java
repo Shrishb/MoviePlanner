@@ -23,7 +23,7 @@ public class ListViewFragment extends Fragment {
 
     private List<MovieEvent> list;
 
-    // List to stare all events
+    // List to store all events
     public static List<MovieEvent> AllEvents = new ArrayList<>();
 
     //recyclerview objects
@@ -95,8 +95,8 @@ public class ListViewFragment extends Fragment {
 
         else{
             // Load static lists
-            Log.i("size",Integer.toString(AllEvents.size()));
-            Log.i("lists",AllEvents.toString());
+            //Log.i("size",Integer.toString(AllEvents.size()));
+            //Log.i("lists",AllEvents.toString());
             adapter = new EventsAdapter(AllEvents, getActivity());
             recyclerView.setAdapter(adapter);
         }

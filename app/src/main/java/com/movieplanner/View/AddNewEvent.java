@@ -65,7 +65,7 @@ public class AddNewEvent extends AppCompatActivity {
                 eventVenue.getText().toString(),
                 eventStartDate.getText().toString(),
                 eventEndDate.getText().toString(),
-                eventLocation.getText().toString(), returnAttendees());
+                eventLocation.getText().toString());
 
         // passing values to FileHandlers
 

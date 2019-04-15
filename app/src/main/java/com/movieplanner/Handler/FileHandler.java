@@ -74,7 +74,7 @@ public class FileHandler {
                 listViewFragment.AllEvents.add(new MovieEvent(id, title, venue, startDate, endDate, location));
 
             }
-            Log.i("value","ooo - "+eventsList.size());
+           // Log.i("value","ooo - "+eventsList.size());
         } catch (Resources.NotFoundException e) {
         }
 
