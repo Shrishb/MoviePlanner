@@ -9,6 +9,18 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.movieplanner.View.ListViewFragment">
 
+    <ImageView
+        android:id="@+id/sortEvents"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="250dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="15dp"
+        android:src="@drawable/baseline_sort_black_48dp" />
+
     <Button
         android:id="@+id/addEvents"
         android:layout_width="209dp"
@@ -16,9 +28,9 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="78dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="108dp"
+        android:layout_marginStart="62dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="156dp"
         android:text="@string/ScheduleEvent" />
 
     <android.support.v7.widget.RecyclerView

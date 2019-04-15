@@ -28,4 +28,6 @@
     <string name="calendar_monday">monday</string>
     <string name="list_view">List View</string>
     <string name="calendar_view">Calendar View</string>
+    <string name="action_bar_sort_asc">Ascending</string>
+    <string name="action_bar_sort_desc">Descending</string>
 </resources>
