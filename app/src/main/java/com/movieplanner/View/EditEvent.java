@@ -117,16 +117,13 @@ public class EditEvent extends AppCompatActivity {
         attendeesField.setOnClickListener(new ContactsDataListener(this));
     }
 
-
-
-
     // update the list with the contact names derived from contact manager
     private void updateAttendeesField()
     {
         List<String> attendeesNames = new ArrayList<>();
         for (Attendees a : attendees)
         {
-            attendeesNames.add(a.toString());
+            attendeesNames.add(a.getEmail());
         }
         attendeesField.setText(TextUtils.join(", ", attendeesNames));
     }
