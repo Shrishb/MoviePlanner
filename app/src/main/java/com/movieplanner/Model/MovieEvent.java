@@ -4,7 +4,7 @@ import com.movieplanner.Model.Interface.IEvent;
 
 import java.util.List;
 
-public class MovieEvent implements IEvent {
+public class MovieEvent implements IEvent, Comparable {
     // Data memebers
     private String eventId;
 
@@ -123,4 +123,11 @@ public class MovieEvent implements IEvent {
     public void setContacts(List<Attendees> contacts) {
         Contacts = contacts;
     }
+
+    @Override
+    public int compareTo(Object o) {
+       return  this.getStartDate().compareTo(((MovieEvent)o).getStartDate());
+       // return  this.getEventTitle().compareTo(((MovieEvent)o).getEventTitle());
+    }
+
 }
