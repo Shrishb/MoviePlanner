@@ -23,6 +23,9 @@ import com.movieplanner.Handler.FileHandler;
 import com.movieplanner.Model.MovieEvent;
 import com.movieplanner.R;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -86,12 +89,13 @@ public class ListViewFragment extends Fragment {
 
                             case R.id.event_list_sort_asc:
                                 sortEventsAscending();
-                                adapter.notifyDataSetChanged();
-                                item.setChecked(true);
+                                loadRecyclerViewItem();
+                               // adapter.notifyDataSetChanged();
+                                //item.setChecked(true);
                                 return true;
                             case R.id.event_list_sort_desc:
-                                //sortEventsDescending();
-                                item.setChecked(true);
+                                sortEventsDescending();
+                                loadRecyclerViewItem();
                                 return true;
                         }
                         return false;
@@ -121,9 +125,9 @@ public class ListViewFragment extends Fragment {
                 myList = new MovieEvent(
                         eventsData.get(i).getEventId(),
                         eventsData.get(i).getEventTitle(),
-                        eventsData.get(i).getVenue(),
                         eventsData.get(i).getStartDate(),
                         eventsData.get(i).getEndDate(),
+                        eventsData.get(i).getVenue(),
                         eventsData.get(i).getLocation(),
                         eventsData.get(i).getContacts()
                 );
@@ -142,16 +146,15 @@ public class ListViewFragment extends Fragment {
         }
     }
 
+    // sort events by startDate
     public void sortEventsAscending()
     {
-//        Collections.sort(eventsData, new Comparator<MovieEvent>()
-//        {
-//            @Override
-//            public int compare(MovieEvent o1, MovieEvent o2) {
-//                if (o1.getStartDate() == null || o2.getStartDate() == null)
-//                    return 0;
-//                return o1.getStartDate().compareTo(o2.getStartDate());
-//            }
-//        });
+        Collections.sort(AllEvents);
     }
+
+    public void sortEventsDescending()
+    {
+        Collections.sort(AllEvents, Collections.reverseOrder());
+    }
+
 }

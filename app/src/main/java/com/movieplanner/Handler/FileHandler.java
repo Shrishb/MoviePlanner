@@ -66,12 +66,12 @@ public class FileHandler {
                 String venue = splitText[4].replaceAll("^\"|\"$", "");
                 String location = splitText[5].replaceAll("^\"|\"$", "");
 
-                eventsList.add(new MovieEvent(id, title, venue, startDate, endDate, location));
+                eventsList.add(new MovieEvent(id, title,  startDate, endDate,venue, location));
 
                 // add lists to AllEvents arraylist after object creation
 
                 ListViewFragment listViewFragment = new ListViewFragment();
-                listViewFragment.AllEvents.add(new MovieEvent(id, title, venue, startDate, endDate, location));
+                listViewFragment.AllEvents.add(new MovieEvent(id, title,  startDate, endDate, venue, location));
 
             }
            // Log.i("value","ooo - "+eventsList.size());
