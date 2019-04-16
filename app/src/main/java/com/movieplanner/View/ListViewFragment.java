@@ -34,8 +34,7 @@ public class ListViewFragment extends Fragment {
 
     // List to store all events
     public static List<MovieEvent> AllEvents = new ArrayList<>();
-    FileHandler fileHandler = new FileHandler();
-    List<MovieEvent> eventsData = fileHandler.parseEventsFile(getActivity());
+
 
     //recyclerview objects
     private RecyclerView recyclerView;
@@ -109,8 +108,12 @@ public class ListViewFragment extends Fragment {
     private void loadRecyclerViewItem() {
         // call filehandler class method to generate events details in card layout
         MovieEvent myList;
+
+        FileHandler fileHandler = new FileHandler();
+
         // Check if static arraylist has value
         if(AllEvents.isEmpty()){
+            List<MovieEvent> eventsData = fileHandler.parseEventsFile(getActivity());
 
             // load from file 1st time
 
@@ -141,14 +144,14 @@ public class ListViewFragment extends Fragment {
 
     public void sortEventsAscending()
     {
-        Collections.sort(eventsData, new Comparator<MovieEvent>()
-        {
-            @Override
-            public int compare(MovieEvent o1, MovieEvent o2) {
-                if (o1.getStartDate() == null || o2.getStartDate() == null)
-                    return 0;
-                return o1.getStartDate().compareTo(o2.getStartDate());
-            }
-        });
+//        Collections.sort(eventsData, new Comparator<MovieEvent>()
+//        {
+//            @Override
+//            public int compare(MovieEvent o1, MovieEvent o2) {
+//                if (o1.getStartDate() == null || o2.getStartDate() == null)
+//                    return 0;
+//                return o1.getStartDate().compareTo(o2.getStartDate());
+//            }
+//        });
     }
 }
