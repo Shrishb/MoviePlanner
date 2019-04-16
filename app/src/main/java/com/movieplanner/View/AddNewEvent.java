@@ -64,7 +64,7 @@ public class AddNewEvent extends AppCompatActivity {
         // get Movie object
          Movie movieObj = Miscelleneaous.findMovieObjByID(ViewMovies.list, addEventMovie.getText().toString());
         //Log.i("Movieval", addEventMovie.getText().toString());
-        MainIntent.putExtra("eventAttendees",attendees.size());
+      //  MainIntent.putExtra("eventAttendees",attendees.size());
 
         // Making New Event object
 
@@ -144,7 +144,7 @@ public class AddNewEvent extends AppCompatActivity {
         List<String> attendeesNames = new ArrayList<>();
         for (Attendees c : attendees)
         {
-            attendeesNames.add(c.toString());
+            attendeesNames.add(c.getEmail());
         }
         attendeesField.setText(TextUtils.join(", ", attendeesNames));
     }

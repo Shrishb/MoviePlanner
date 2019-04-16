@@ -3,6 +3,7 @@ package com.movieplanner.Handler;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.provider.ContactsContract;
 
 public class ContactsDataHandler {
@@ -39,6 +40,7 @@ public class ContactsDataHandler {
             String name = null;
             try
             {
+
                 cursor = context.getContentResolver().query(intent.getData(), null,
                         null, null, null);
                 if (cursor.moveToFirst())
@@ -77,10 +79,9 @@ public class ContactsDataHandler {
             String email = null;
             try
             {
-                cursor = context.getContentResolver().query(ContactsContract.CommonDataKinds.Email.CONTENT_URI,
-                        null, ContactsContract.CommonDataKinds.Email.CONTACT_ID + "=?",
-                        new String[] { intent.getData().getLastPathSegment() },
-                        null);
+                Uri phoneUri = intent.getData();
+                cursor = context.getContentResolver().query(phoneUri,
+                        null, null, null, null);
 
                 if (cursor.moveToFirst())
                 {

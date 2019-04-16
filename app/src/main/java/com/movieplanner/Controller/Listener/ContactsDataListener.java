@@ -16,8 +16,8 @@ public class ContactsDataListener implements View.OnClickListener {
     @Override
     public void onClick(View view)
     {
-        Intent contactPickerIntent = new Intent(Intent.ACTION_PICK,
-                ContactsContract.Contacts.CONTENT_URI);
+        Intent contactPickerIntent = new Intent(Intent.ACTION_PICK);
+        contactPickerIntent.setType(ContactsContract.CommonDataKinds.Email.CONTENT_TYPE);
         activity.startActivityForResult(
                 contactPickerIntent, 1);
     }
