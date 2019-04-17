@@ -22,7 +22,7 @@ public class CalendarEventAdapter extends ArrayAdapter<MovieEvent>
     private int layoutResource;
     List<MovieEvent> selectedEvents;
 
-
+    //constructor
     public CalendarEventAdapter(Context context, int resource,List<MovieEvent> events)
     {
         super(context, resource, events);
@@ -31,6 +31,7 @@ public class CalendarEventAdapter extends ArrayAdapter<MovieEvent>
         this.selectedEvents = events;
     }
 
+    // get the listview item and display it in the layout
     @Override
     public View getView(int position, View view, ViewGroup parent)
     {

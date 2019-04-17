@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * When attached as the {@code OnItemClickListener} to a Calendar
  * {@code GridView}, pressing a date will populate the given
- * {@code EventArrayAdapter} with the events for that date.
+ * with the events for that date.
  */
 public class CalendarItemSelectedListener
         implements AdapterView.OnItemClickListener
@@ -29,6 +29,7 @@ public class CalendarItemSelectedListener
     private ListView eventList;
     private CalendarEventAdapter calendarEventAdapter;
 
+    //constructor
     public CalendarItemSelectedListener(Activity activity,
                                        CalendarView calendar,
                                        ListView eventList,
@@ -40,6 +41,7 @@ public class CalendarItemSelectedListener
         this.calendarEventAdapter = calendarEventAdapter;
     }
 
+    // on clicking an item it fetches the events present for the particular date.
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position,
                             long id)
@@ -59,11 +61,11 @@ public class CalendarItemSelectedListener
                 selectedEvents
         );
 
-        calendarEventAdapter.getCount();
-
+        // set custom adapter to set data items of the event
         eventList.setAdapter(calendarEventAdapter);
         eventList.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
 
+        // on click listener for list item to move to next activity.
         eventList.setOnItemClickListener(new ViewCalendarEventListener(
                 activity, calendarEventAdapter, selectedEvents));
 
@@ -71,19 +73,20 @@ public class CalendarItemSelectedListener
         calendar.getCalendarAdapter().notifyDataSetChanged();
     }
 
+    //returns all events for a given day
     public List<MovieEvent> getAllEventsForSelectedDay(String dateVal){
         Date dateToday = new Date();
-        List<MovieEvent> eventss = new ArrayList<>();
+        List<MovieEvent> allEventsOfDay = new ArrayList<>();
         List<MovieEvent> events = ListViewFragment.AllEvents;
 
+        // loop though the events to check the date and return all events present on the same day.
         Date DateObjCurrentDate = Miscelleneaous.convertStringToDate(dateVal);
         for(int i=0;i<events.size();i++){
             Date reminderDate = Miscelleneaous.convertStringToDate(events.get(i).getStartDate().split(" ")[0]);
             if(reminderDate.compareTo(DateObjCurrentDate) == 0){
-                eventss.add(events.get(i));
-                // Toast.makeText(context,events.get(i).getEventId(), Toast.LENGTH_LONG).show();
+                allEventsOfDay.add(events.get(i));
             }
         }
-        return eventss;
+        return allEventsOfDay;
     }
 }

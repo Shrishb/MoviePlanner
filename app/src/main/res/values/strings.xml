@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">MoviePlanner</string>
-    <string name="vertical_ellipsis">&#8942;</string>
     <string name="CreateNewEvent">Create New Event</string>
     <string name="event_title">Event Title</string>
     <string name="event_start_date">Start Date</string>
@@ -19,13 +18,13 @@
     <string name="ScheduleEvent">Schedule Event</string>
     <string name="event_attendees_label">Attendees</string>
     <string name="add_new_movie">Add New Movie</string>
-    <string name="calendar_saturday">saturday</string>
-    <string name="calendar_friday">friday</string>
-    <string name="calendar_thursday">thursday</string>
-    <string name="calendar_wednesday">wednesday</string>
-    <string name="calendar_tuesday">tuesday</string>
-    <string name="calendar_sunday">sunday</string>
-    <string name="calendar_monday">monday</string>
+    <string name="calendar_saturday">Sat</string>
+    <string name="calendar_friday">Fri</string>
+    <string name="calendar_thursday">Thu</string>
+    <string name="calendar_wednesday">Wed</string>
+    <string name="calendar_tuesday">Tue</string>
+    <string name="calendar_sunday">Sun</string>
+    <string name="calendar_monday">Mon</string>
     <string name="list_view">List View</string>
     <string name="calendar_view">Calendar View</string>
     <string name="action_bar_sort_asc">Ascending</string>

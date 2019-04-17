@@ -1,6 +1,5 @@
 package com.movieplanner.View;
 
-import android.R.layout;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -10,12 +9,10 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ListView;
 
 import com.movieplanner.Adapter.CalendarEventAdapter;
-import com.movieplanner.Adapter.EventsAdapter;
 import com.movieplanner.Controller.Listener.CalendarItemSelectedListener;
 import com.movieplanner.Model.MovieEvent;
 import com.movieplanner.R;
@@ -45,6 +42,7 @@ public class CalendarFragment extends Fragment
         return v;
     }
 
+    //load the customer calendar components in the grid
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         super.onCreate(savedInstanceState);
@@ -62,6 +60,7 @@ public class CalendarFragment extends Fragment
         eventList.setEmptyView(getView().findViewById(R.id.empty_list_text));
     }
 
+    // add floating bar for add event from calender
     private void setUpFloatingActionButton()
     {
         FloatingActionButton fab = (FloatingActionButton) getView().findViewById(R.id.fab_add);
@@ -81,29 +80,4 @@ public class CalendarFragment extends Fragment
         super.onConfigurationChanged(newConfig);
         drawerToggle.onConfigurationChanged(newConfig);
     }
-
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-//    {
-//        if ((requestCode == IntentRequestCodes.VIEW_EVENT_REQUEST)
-//                || (requestCode == IntentRequestCodes.ADD_EVENT_REQUEST))
-//        {
-//            if (resultCode == RESULT_OK)
-//            {
-//                if (data.getBooleanExtra("updateList", false))
-//                {
-//                    if (selectedDate != null
-//                            && eventListAdapter != null)
-//                    {
-//                        eventListAdapter.clear();
-//                        eventListAdapter.addAll(model.getEventsOnDay(
-//                                selectedDate.get(Calendar.DAY_OF_MONTH),
-//                                selectedDate.get(Calendar.MONTH),
-//                                selectedDate.get(Calendar.YEAR)));
-//                        eventListAdapter.notifyDataSetChanged();
-//                    }
-//                }
-//            }
-//        }
-//    }
 }

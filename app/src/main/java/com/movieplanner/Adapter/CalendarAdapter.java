@@ -29,6 +29,7 @@ public class CalendarAdapter extends ArrayAdapter<Calendar>
     private Set<Integer> daysWithEvents;
     private int selectedPosition = -1;
 
+    //constructor
     public CalendarAdapter(Context context, List<Calendar> days,
                            int month, int year, Set<Integer> daysWithEvents)
     {

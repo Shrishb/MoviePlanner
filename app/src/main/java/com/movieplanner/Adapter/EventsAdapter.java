@@ -27,7 +27,6 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventsView
     ImageView deleteEventBtn;
 
     //constructor
-    //todo : need to add other properties as well
     public EventsViewHolder(View view) {
         super(view);
         title = (TextView) view.findViewById(R.id.title);
@@ -59,10 +58,8 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventsView
     public void onBindViewHolder(final EventsAdapter.EventsViewHolder holder, int position) {
         MovieEvent movieEvent = eventsList.get(position);
         holder.title.setText(movieEvent.getEventTitle());
-        //holder.attendeesCount.setText(movieEvent.getContacts());
         holder.startDate.setText(movieEvent.getStartDate());
         holder.endDate.setText(movieEvent.getEndDate());
-        //Log.i("venuname", movieEvent.getVenue());
         holder.Venue.setText(movieEvent.getVenue());
         if(movieEvent.getMoviedetails() != null){
             holder.MovieName.setText(movieEvent.getMoviedetails().getTitle());

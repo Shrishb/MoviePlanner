@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     TabItem tabListView;
     TabItem tabCalendar;
 
+    // load the tab layout view with in the main activity page
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // bind tab elements
         tabListView = findViewById(R.id.tabListView);
         tabCalendar = findViewById(R.id.tabCalendar);
         viewPager = findViewById(R.id.viewPager);
@@ -37,18 +39,17 @@ public class MainActivity extends AppCompatActivity {
 
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
-        // tab layout listener
-
+        // tab layout listener to set colour on tabs on select and unselect
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
                 if (tab.getPosition() == 1) {
-                    //toolbar.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.colorAccent));
+                    toolbar.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.colorBlue));
                     tabLayout.setBackgroundColor(ContextCompat.getColor(MainActivity.this,
                             R.color.colorAccent));
                 } else if (tab.getPosition() == 2) {
-                   // toolbar.setBackgroundColor(ContextCompat.getColor(MainActivity.this, android.R.color.darker_gray));
+                   toolbar.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.colorBlue));
                     tabLayout.setBackgroundColor(ContextCompat.getColor(MainActivity.this,
                             android.R.color.darker_gray));
                 }

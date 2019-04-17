@@ -55,10 +55,11 @@ public class FileHandler {
             scanner.useDelimiter(",\\s*|\\s*\\n+");
             //loop through the lines and get all instance values
             while (scanner.hasNext()) {
+                // fetch data from each line into an array
                 String line = scanner.nextLine();
                 String[] splitText = line.split(",");
 
-                // Removing double quotes
+                // Removing double quotes from each value
                 String id = splitText[0].replaceAll("^\"|\"$", "");
                 String title = splitText[1].replaceAll("^\"|\"$", "");
                 String startDate = splitText[2].replaceAll("^\"|\"$", "");
@@ -74,12 +75,9 @@ public class FileHandler {
                 listViewFragment.AllEvents.add(new MovieEvent(id, title,  startDate, endDate, venue, location));
 
             }
-           // Log.i("value","ooo - "+eventsList.size());
         } catch (Resources.NotFoundException e) {
         }
-
         return eventsList;
-
     }
 
 }

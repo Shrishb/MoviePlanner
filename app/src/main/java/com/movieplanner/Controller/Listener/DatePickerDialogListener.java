@@ -21,6 +21,7 @@ public class DatePickerDialogListener
     private DateFormat formatter = new SimpleDateFormat("EEE, d MMM yyyy",
             Locale.getDefault());
 
+    //constructor
     public DatePickerDialogListener(Context context, EditText dateField)
     {
         this.context = context;
@@ -41,6 +42,7 @@ public class DatePickerDialogListener
         this.dateField.setText(formatter.format(date.getTime()));
     }
 
+    // set details to be shown on the time picker layout
     @Override
     public void onDateSet(DatePicker datePicker, int year, int month, int day)
     {
@@ -51,6 +53,7 @@ public class DatePickerDialogListener
         dateField.setText(formatter.format(date.getTime()));
     }
 
+    // instantiate DatePicker with the layout field values
     @Override
     public void onClick(View view)
     {

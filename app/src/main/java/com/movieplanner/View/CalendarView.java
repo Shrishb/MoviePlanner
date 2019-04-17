@@ -39,7 +39,7 @@ public class CalendarView extends LinearLayout
     private ImageView nextBtn;
     private GridView calendarGrid;
     private Context context;
-//    private EventModel model;
+
     public static List<MovieEvent> selectedEvents;
 
     public CalendarView(Context context)
@@ -59,7 +59,6 @@ public class CalendarView extends LinearLayout
     {
         super(context, attrs, defStyleAttr);
         init(context);
-        //setGridCellClickEvents();
     }
 
     private void init(final Context context)
@@ -94,39 +93,8 @@ public class CalendarView extends LinearLayout
                 updateCalendar(null);
             }
         });
-
-//        calendarGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//               // Toast.makeText(CalendarView.this,"Clicked ",Toast.LENGTH_LONG).show();
-//                Calendar c = Calendar.getInstance();
-//               int month = c.get(Calendar.MONTH);
-//                month = month+1;
-//
-//                String selectedDate = position + "/" + month + "/" + c.get(Calendar.YEAR);
-//                selectedEvents =  getAllEventsForSelectedDay(selectedDate);
-//            }
-//        });
-
         updateCalendar(null);
     }
-
-
-
-//
-//    public void updateCalendar()
-//    {
-//        if (model != null)
-//        {
-//            updateCalendar(model.getDaysInMonthWithEvents(
-//                    displayedMonth.get(Calendar.MONTH),
-//                    displayedMonth.get(Calendar.YEAR)));
-//        }
-//        else
-//        {
-//            updateCalendar(null);
-//        }
-//    }
 
     public void updateCalendar(Set<Integer> daysWithEvents)
     {

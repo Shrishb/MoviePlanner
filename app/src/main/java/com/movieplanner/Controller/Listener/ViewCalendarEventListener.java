@@ -16,6 +16,8 @@ public class ViewCalendarEventListener implements AdapterView.OnItemClickListene
     private Activity activity;
     private CalendarEventAdapter calendarEventAdapter;
     List<MovieEvent> eventsList;
+
+    //constructor
     public ViewCalendarEventListener(Activity activity, CalendarEventAdapter calendarEventAdapter, List<MovieEvent> selectedEvents)
     {
         this.activity = activity;
@@ -23,6 +25,7 @@ public class ViewCalendarEventListener implements AdapterView.OnItemClickListene
         this.eventsList = selectedEvents;
     }
 
+    //call edit event activity on selection of calender list event.
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position,
                             long id)

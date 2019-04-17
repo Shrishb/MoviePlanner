@@ -13,6 +13,7 @@ public class ContactsDataListener implements View.OnClickListener {
         this.activity = activity;
     }
 
+    // use action_pick to fetch details of selected contact value
     @Override
     public void onClick(View view)
     {

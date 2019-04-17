@@ -121,7 +121,7 @@ public class AddNewEvent extends AppCompatActivity {
         });
     }
 
-    //todo: move this code to common to avoid duplicate code
+    // getch the contact name and email id from the Contacts data handler
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
