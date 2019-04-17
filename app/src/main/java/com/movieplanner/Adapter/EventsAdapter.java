@@ -3,6 +3,7 @@ package com.movieplanner.Adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,7 +23,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventsView
     private Context context;
 
     public class EventsViewHolder extends RecyclerView.ViewHolder {
-    public TextView id, title, attendeesCount,startDate, endDate, MovieName;
+    public TextView id, title, attendeesCount,startDate, endDate, MovieName, Venue;
     ImageView deleteEventBtn;
 
     //constructor
@@ -33,7 +34,8 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventsView
         startDate = (TextView) view.findViewById(R.id.startDate);
         endDate = (TextView) view.findViewById(R.id.endDate);
         MovieName = (TextView) view.findViewById(R.id.MovieName);
-        //attendeesCount = (TextView) view.findViewById(R.id.attendeesCount);
+        Venue = (TextView) view.findViewById(R.id.eventVenue);
+        attendeesCount = (TextView) view.findViewById(R.id.attendeesCount);
         deleteEventBtn = (ImageView) view.findViewById(R.id.event_delete_button);
         }
     }
@@ -60,8 +62,16 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventsView
         //holder.attendeesCount.setText(movieEvent.getContacts());
         holder.startDate.setText(movieEvent.getStartDate());
         holder.endDate.setText(movieEvent.getEndDate());
+        //Log.i("venuname", movieEvent.getVenue());
+        holder.Venue.setText(movieEvent.getVenue());
         if(movieEvent.getMoviedetails() != null){
             holder.MovieName.setText(movieEvent.getMoviedetails().getTitle());
+        }
+
+        if(movieEvent.getContacts() != null){
+            holder.attendeesCount.setText("Attendees : "+Integer.toString(movieEvent.getContacts().size()));
+        }else{
+            holder.attendeesCount.setText("Attendees : 0");
         }
 
 
@@ -104,6 +114,23 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventsView
         }
         else{
             MainIntent.putExtra("mTitle", "");
+        }
+        String commaSepAttendees = "";
+        if(eventsList.get(holder.getAdapterPosition()).getContacts() != null){
+
+            // seperate attendees with comma and pass below
+            for(int i=0;i<eventsList.get(holder.getAdapterPosition()).getContacts().size();i++){
+                commaSepAttendees = eventsList.get(holder.getAdapterPosition()).getContacts().get(i).getEmail() + "," + commaSepAttendees ;
+            }
+            if(commaSepAttendees != ""){
+                MainIntent.putExtra("mAttendees", commaSepAttendees.substring(0, commaSepAttendees.length() - 1));
+            }
+            else{
+                MainIntent.putExtra("mAttendees", "");
+            }
+        }
+        else{
+            MainIntent.putExtra("mAttendees", commaSepAttendees);
         }
 
 

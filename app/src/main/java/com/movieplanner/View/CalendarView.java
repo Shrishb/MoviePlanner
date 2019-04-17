@@ -2,20 +2,27 @@ package com.movieplanner.View;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.movieplanner.Adapter.CalendarAdapter;
+import com.movieplanner.Controller.Listener.Miscelleneaous;
+import com.movieplanner.Model.MovieEvent;
 import com.movieplanner.R;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
@@ -31,11 +38,14 @@ public class CalendarView extends LinearLayout
     private ImageView prevBtn;
     private ImageView nextBtn;
     private GridView calendarGrid;
+    private Context context;
 //    private EventModel model;
+    public static List<MovieEvent> selectedEvents;
 
     public CalendarView(Context context)
     {
         super(context);
+        this.context = context;
         init(context);
     }
 
@@ -49,15 +59,10 @@ public class CalendarView extends LinearLayout
     {
         super(context, attrs, defStyleAttr);
         init(context);
+        //setGridCellClickEvents();
     }
 
-//    public void setModel(EventModel model)
-//    {
-//        this.model = model;
-//       // updateCalendar();
-//    }
-
-    private void init(Context context)
+    private void init(final Context context)
     {
         LayoutInflater inflater = LayoutInflater.from(context);
         inflater.inflate(R.layout.calendar_view, this);
@@ -90,8 +95,24 @@ public class CalendarView extends LinearLayout
             }
         });
 
+//        calendarGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//               // Toast.makeText(CalendarView.this,"Clicked ",Toast.LENGTH_LONG).show();
+//                Calendar c = Calendar.getInstance();
+//               int month = c.get(Calendar.MONTH);
+//                month = month+1;
+//
+//                String selectedDate = position + "/" + month + "/" + c.get(Calendar.YEAR);
+//                selectedEvents =  getAllEventsForSelectedDay(selectedDate);
+//            }
+//        });
+
         updateCalendar(null);
     }
+
+
+
 //
 //    public void updateCalendar()
 //    {
@@ -132,6 +153,7 @@ public class CalendarView extends LinearLayout
         // Fill cell array with current month's days
         for (int i = 0; i < daysInMonth; i++)
         {
+            String DateVal = (i+1) + "/"+ month + "/" + year;
             cells.add((Calendar)cal.clone());
             cal.add(Calendar.DAY_OF_MONTH, 1);
         }

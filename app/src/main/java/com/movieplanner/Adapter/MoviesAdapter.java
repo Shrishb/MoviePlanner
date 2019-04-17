@@ -58,8 +58,6 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesView
         return new MoviesAdapter.MoviesViewHolder(itemView);
     }
 
-    //todo: set image view from poster name
-
     //bind options ellipsis menu to each cardview item
     @Override
     public void onBindViewHolder(final MoviesAdapter.MoviesViewHolder holder, int position) {

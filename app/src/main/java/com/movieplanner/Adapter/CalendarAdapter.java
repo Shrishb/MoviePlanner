@@ -2,15 +2,20 @@ package com.movieplanner.Adapter;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.movieplanner.Controller.Listener.Miscelleneaous;
+import com.movieplanner.Model.MovieEvent;
 import com.movieplanner.R;
+import com.movieplanner.View.ListViewFragment;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -56,15 +61,22 @@ public class CalendarAdapter extends ArrayAdapter<Calendar>
         {
             textView.setText("");
         }
-// Highlight today's date
+    // Highlight event's date
         Calendar today = Calendar.getInstance();
-        if (date.get(Calendar.DAY_OF_MONTH) == today.get(Calendar.DAY_OF_MONTH)
-                && month == today.get(Calendar.MONTH)
-                && year == today.get(Calendar.YEAR))
-        {
-            textView.setTypeface(textView.getTypeface(), Typeface.BOLD);
-            textView.setTextColor(
-                    context.getResources().getColor(R.color.calendar_today));
+        List<MovieEvent> events = ListViewFragment.AllEvents;
+
+        String currentDate = date.get(Calendar.DAY_OF_MONTH) + "/0"+(date.get(Calendar.MONTH) +1) + "/" + date.get(Calendar.YEAR);
+
+        Date currentDateval = Miscelleneaous.convertStringToDate(currentDate);
+
+        for(int i=0;i<events.size();i++){
+            Date eventValue = Miscelleneaous.convertStringToDate(events.get(i).getStartDate().split(" ")[0]);
+            if(Miscelleneaous.convertStringToDate(events.get(i).getStartDate()).compareTo(currentDateval) == 0){
+
+                textView.setTypeface(textView.getTypeface(), Typeface.BOLD);
+                textView.setTextColor(
+                        context.getResources().getColor(R.color.calendar_today));
+            }
         }
 
         // Set selected day
@@ -92,4 +104,6 @@ public class CalendarAdapter extends ArrayAdapter<Calendar>
         return (date.get(Calendar.MONTH) == month
                 && date.get(Calendar.YEAR) == year);
     }
+
+
 }

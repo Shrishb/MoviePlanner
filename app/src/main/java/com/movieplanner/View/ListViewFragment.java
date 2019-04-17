@@ -20,6 +20,7 @@ import android.widget.PopupMenu;
 
 import com.movieplanner.Adapter.EventsAdapter;
 import com.movieplanner.Handler.FileHandler;
+import com.movieplanner.Model.Attendees;
 import com.movieplanner.Model.MovieEvent;
 import com.movieplanner.R;
 
@@ -38,8 +39,7 @@ public class ListViewFragment extends Fragment {
     // List to store all events
     public static List<MovieEvent> AllEvents = new ArrayList<>();
 
-
-    //recyclerview objects
+        //recyclerview objects
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
 
@@ -90,8 +90,6 @@ public class ListViewFragment extends Fragment {
                             case R.id.event_list_sort_asc:
                                 sortEventsAscending();
                                 loadRecyclerViewItem();
-                               // adapter.notifyDataSetChanged();
-                                //item.setChecked(true);
                                 return true;
                             case R.id.event_list_sort_desc:
                                 sortEventsDescending();
@@ -140,13 +138,13 @@ public class ListViewFragment extends Fragment {
         }
 
         else{
-
+            //System.out.print(AllEvents);
             adapter = new EventsAdapter(AllEvents, getActivity());
             recyclerView.setAdapter(adapter);
         }
     }
 
-    // sort events by startDate
+    // sort events by startDate in ascending order
     public void sortEventsAscending()
     {
         Collections.sort(AllEvents);

@@ -57,6 +57,18 @@ public class MovieEvent implements IEvent, Comparable {
         //this.Contacts = contacts;
     }
 
+    public MovieEvent(String eventId, String eventTitle,String startDate,
+                      String endDate, String venue ,String location, Movie movieinfo,List<Attendees> Contactsval ){
+        this.eventId =eventId;
+        this.eventTitle = eventTitle;
+        this.venue = venue;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.location = location;
+        this.moviedetails = movieinfo;
+        this.Contacts = Contactsval;
+    }
+
     // Getter and setters
 
     public String getEventId() {

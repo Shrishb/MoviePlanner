@@ -1,5 +1,6 @@
 package com.movieplanner.View;
 
+import android.R.layout;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -9,12 +10,20 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ListView;
 
+import com.movieplanner.Adapter.CalendarEventAdapter;
+import com.movieplanner.Adapter.EventsAdapter;
+import com.movieplanner.Controller.Listener.CalendarItemSelectedListener;
+import com.movieplanner.Model.MovieEvent;
 import com.movieplanner.R;
 
 import java.util.Calendar;
+import java.util.List;
+
+import static com.movieplanner.View.CalendarView.selectedEvents;
 
 
 public class CalendarFragment extends Fragment
@@ -24,6 +33,7 @@ public class CalendarFragment extends Fragment
     private GridView calendarGrid;
     private ListView eventList;
     private Calendar selectedDate;
+    CalendarEventAdapter arrayAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,6 +53,11 @@ public class CalendarFragment extends Fragment
         calendarView = (CalendarView) getView().findViewById(R.id.calendar);
         calendarGrid = (GridView) getView().findViewById(R.id.calendar_grid);
         eventList = (ListView) getView().findViewById(R.id.calendar_event_list);
+         List<MovieEvent> selectedEvents = CalendarView.selectedEvents;
+
+        calendarGrid.setOnItemClickListener(
+                new CalendarItemSelectedListener(
+                        getActivity(), calendarView, eventList, arrayAdapter));
 
         eventList.setEmptyView(getView().findViewById(R.id.empty_list_text));
     }

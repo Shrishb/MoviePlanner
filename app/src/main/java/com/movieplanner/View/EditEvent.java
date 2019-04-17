@@ -113,10 +113,27 @@ public class EditEvent extends AppCompatActivity {
         editEventSubmit.setVisibility(View.INVISIBLE);
 
         attendeesField = (EditText) findViewById(R.id.editEventAttendees);
+        attendeesField.setText(newIntent.getStringExtra("mAttendees"));
         attendeesField.setEnabled(false);
         attendeesField.setOnClickListener(new ContactsDataListener(this));
+
+        // add Attendees value to arraylist attendees
+        if(newIntent.getStringExtra("mAttendees") != ""){
+           updateAttendeesField1(newIntent.getStringExtra("mAttendees"));
+        }
+
     }
 
+    private void updateAttendeesField1(String val){
+        String[] attVal = val.split(",");
+
+        for(int i=0;i<attVal.length;i++){
+            if(attVal[i] != ""){
+                attendees.add(new Attendees(null, attVal[i]));
+            }
+
+        }
+    }
     // update the list with the contact names derived from contact manager
     private void updateAttendeesField()
     {
@@ -202,6 +219,7 @@ public class EditEvent extends AppCompatActivity {
                 // get Movie object
                 Movie movieObj = Miscelleneaous.findMovieObjByID(ViewMovies.list, editMovieName.getText().toString());
                 ListViewFragment.AllEvents.get(i).setMoviedetails(movieObj);
+                ListViewFragment.AllEvents.get(i).setContacts(attendees);
                 // break the loop after changing
                 break;
             }

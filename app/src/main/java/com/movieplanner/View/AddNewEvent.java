@@ -31,6 +31,9 @@ public class AddNewEvent extends AppCompatActivity {
     EditText eventLocation ;
     EditText eventVenue;
     EditText addEventMovie;
+    EditText addEventAttendees;
+
+
     private static final int RES_CODE_A = 3;
 
     //create new event view
@@ -60,6 +63,13 @@ public class AddNewEvent extends AppCompatActivity {
         MainIntent.putExtra("eventEndDate",eventEndDate.getText());
         MainIntent.putExtra("eventLocation",eventLocation.getText());
         MainIntent.putExtra("eventVenue",eventVenue.getText());
+        //MainIntent.putExtra("eventAttendees",addEventAttendees.getText());
+
+        // get contacts and create Attendees obj
+        //String[] contacts = Miscelleneaous.findContacts(addEventAttendees.getText().toString());
+
+        // create Attendees objects
+        //Miscelleneaous.Create_New_AttendeesObj(addEventAttendees.getText().toString());
 
         // get Movie object
          Movie movieObj = Miscelleneaous.findMovieObjByID(ViewMovies.list, addEventMovie.getText().toString());
@@ -73,7 +83,8 @@ public class AddNewEvent extends AppCompatActivity {
                 eventStartDate.getText().toString(),
                 eventEndDate.getText().toString(),
                 eventLocation.getText().toString(),
-                movieObj
+                movieObj,
+                attendees
                 );
 
         // passing values to FileHandlers
