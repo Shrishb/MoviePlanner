@@ -4,13 +4,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.movieplanner.Controller.Listener.DatePickerDialogListener;
 import com.movieplanner.Controller.Listener.Miscelleneaous;
 import com.movieplanner.Handler.ContactsDataHandler;
 import com.movieplanner.Controller.Listener.ContactsDataListener;
@@ -57,6 +61,10 @@ public class EditEvent extends AppCompatActivity {
         attendees = new ArrayList<>();
 
         setAllFields();
+
+        // set listeners
+        editMovieName.addTextChangedListener(mTextWatcher);
+        editStartDate.addTextChangedListener(mTextWatcher);
     }
 
     // handle the options button click
@@ -73,6 +81,24 @@ public class EditEvent extends AppCompatActivity {
         }
     }
 
+    private TextWatcher mTextWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+            checkEmptyFields();
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+            checkEmptyFields();
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+            // check Fields For Empty Values
+            checkEmptyFields();
+        }
+    };
+
     // set al layout items as disabled upon loading the activity
     private void setAllFields(){
         Intent newIntent = getIntent();
@@ -87,10 +113,12 @@ public class EditEvent extends AppCompatActivity {
 
         editStartDate = findViewById(R.id.editEventStartDate);
         editStartDate.setText(newIntent.getStringExtra("eStartDate"));
+        new DatePickerDialogListener(this, editStartDate);
         editStartDate.setEnabled(false);
 
         editEndDate = findViewById(R.id.editEventEndDate);
         editEndDate.setText(newIntent.getStringExtra("eEndDate"));
+        new DatePickerDialogListener(this, editEndDate);
         editEndDate.setEnabled(false);
 
         editVenue = findViewById(R.id.editEventVenue);
@@ -110,6 +138,9 @@ public class EditEvent extends AppCompatActivity {
 
         editEventSubmit = findViewById(R.id.editEventSubmit);
         editEventSubmit.setVisibility(View.INVISIBLE);
+        checkEmptyFields();
+
+
 
         attendeesField = (EditText) findViewById(R.id.editEventAttendees);
         attendeesField.setText(newIntent.getStringExtra("mAttendees"));
@@ -121,6 +152,16 @@ public class EditEvent extends AppCompatActivity {
            updateAttendeesField1(newIntent.getStringExtra("mAttendees"));
         }
 
+    }
+
+    private void checkEmptyFields(){
+        //Log.i("ccb",editMovieName.getText().toString());
+        if(editMovieName.getText().toString().equals("") || editStartDate.getText().toString().equals("")){
+            editEventSubmit.setEnabled(false);
+        }
+        else{
+            editEventSubmit.setEnabled(true);
+        }
     }
 
     private void updateAttendeesField1(String val){

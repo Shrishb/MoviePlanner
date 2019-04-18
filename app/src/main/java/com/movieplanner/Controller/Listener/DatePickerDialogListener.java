@@ -18,7 +18,7 @@ public class DatePickerDialogListener
     private Context context;
     private EditText dateField;
     private Calendar date;
-    private DateFormat formatter = new SimpleDateFormat("EEE, d MMM yyyy",
+    private DateFormat formatter = new SimpleDateFormat("d/MM/yyyy",
             Locale.getDefault());
 
     //constructor

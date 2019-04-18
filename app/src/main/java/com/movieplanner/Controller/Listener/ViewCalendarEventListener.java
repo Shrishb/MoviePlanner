@@ -41,6 +41,36 @@ public class ViewCalendarEventListener implements AdapterView.OnItemClickListene
         editIntent.putExtra("eLocation", e.getLocation());
         editIntent.putExtra("eVenue", e.getVenue());
 
+        // movie details
+        if(e.getMoviedetails() != null){
+            editIntent.putExtra("mTitle", e.getMoviedetails().getTitle());
+        }
+        else{
+            editIntent.putExtra("mTitle", "");
+        }
+
+        // contacts details
+        String commaSepAttendees = "";
+        if(e.getContacts() != null){
+
+            for(int i=0;i<e.getContacts().size();i++){
+                commaSepAttendees = e.getContacts().get(i).getEmail() + "," + commaSepAttendees ;
+            }
+
+            if(commaSepAttendees != ""){
+                editIntent.putExtra("mAttendees", commaSepAttendees.substring(0, commaSepAttendees.length() - 1));
+            }
+            else{
+                editIntent.putExtra("mAttendees", "");
+            }
+        }
+        else{
+            editIntent.putExtra("mAttendees", commaSepAttendees);
+        }
+
+
+
+
         activity.startActivity(editIntent);
     }
 }

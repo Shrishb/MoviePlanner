@@ -3,9 +3,12 @@ package com.movieplanner.View;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.movieplanner.Controller.Listener.Miscelleneaous;
@@ -32,6 +35,7 @@ public class AddNewEvent extends AppCompatActivity {
     EditText eventVenue;
     EditText addEventMovie;
     EditText addEventAttendees;
+    private Button NewEventSubmit;
 
 
     private static final int RES_CODE_A = 3;
@@ -45,7 +49,31 @@ public class AddNewEvent extends AppCompatActivity {
         attendees = new ArrayList<>();
 
         setUiElements();
+
+
+
+        // set listeners
+        addEventMovie.addTextChangedListener(mTextWatcher);
+        eventStartDate.addTextChangedListener(mTextWatcher);
     }
+
+    private TextWatcher mTextWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+            checkEmptyFields();
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+            checkEmptyFields();
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+            // check Fields For Empty Values
+            checkEmptyFields();
+        }
+    };
 
     //call activity_main intent on save button click
     public void SaveNewEvent(View view){
@@ -79,9 +107,10 @@ public class AddNewEvent extends AppCompatActivity {
         // Making New Event object
 
         MovieEvent newEvent = new MovieEvent(Integer.toString(ListViewFragment.AllEvents.size() + 1),eventTitle.getText().toString(),
-                eventVenue.getText().toString(),
+
                 eventStartDate.getText().toString(),
                 eventEndDate.getText().toString(),
+                eventVenue.getText().toString(),
                 eventLocation.getText().toString(),
                 movieObj,
                 attendees
@@ -113,12 +142,28 @@ public class AddNewEvent extends AppCompatActivity {
         attendeesField.setOnClickListener(new ContactsDataListener(this));
 
         addEventMovie = (EditText) findViewById(R.id.addEventMovie);
+
+        NewEventSubmit = findViewById(R.id.NewEventSubmit);
+        checkEmptyFields();
+
         addEventMovie.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 Intent intent = new Intent(AddNewEvent.this, ViewMovies.class);
                 startActivityForResult(intent, 2);
             }
         });
+
+
+    }
+
+    private void checkEmptyFields(){
+
+        if(addEventMovie.getText().toString().equals("") || eventStartDate.getText().toString().equals("")){
+            NewEventSubmit.setEnabled(false);
+        }
+        else{
+            NewEventSubmit.setEnabled(true);
+        }
     }
 
     // getch the contact name and email id from the Contacts data handler

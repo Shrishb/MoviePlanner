@@ -35,7 +35,7 @@ public class CalendarEventAdapter extends ArrayAdapter<MovieEvent>
     @Override
     public View getView(int position, View view, ViewGroup parent)
     {
-        if (view == null)
+                if (view == null)
         {
             LayoutInflater inflater = ((Activity) context).getLayoutInflater();
             view = inflater.inflate(layoutResource, parent, false);
@@ -50,7 +50,9 @@ public class CalendarEventAdapter extends ArrayAdapter<MovieEvent>
 
            TextView eventVenue = (TextView) view.findViewById(R.id.calendarEventVenue);
            eventVenue.setText(event.getVenue());
+
        }
+
         return view;
     }
 
